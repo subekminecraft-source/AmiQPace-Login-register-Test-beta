@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Najczęściej zadawane pytania o AmiQPlace, trial, płatności, hosting i konfigurację sklepu.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Podstrony.css">
+  <link rel="stylesheet" href="AmiQPlace - Auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage-body">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <a href="Login.html" class="login">Zaloguj się</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Otwórz lub zamknij menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
+        <span class="menu-toggle__icon" aria-hidden="true"><span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu-drawer" role="dialog" aria-modal="true" aria-label="Menu nawigacji mobilnej" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu-header">
+        <img class="logo__img logo__img--drawer" src="assets/amiqplace-logo.png" alt="" width="200" height="34" decoding="async">
+        <button type="button" class="close-menu" aria-label="Zamknij menu"><span class="close-menu__icon" aria-hidden="true"></span></button>
+      </div>
+      <nav class="mobile-nav" aria-label="Nawigacja główna (mobile)">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <div class="mobile-menu__divider" aria-hidden="true"></div>
+      <div class="mobile-auth">
+        <a href="Register.html" class="mobile-btn mobile-btn--primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto</a>
+        <a href="Login.html" class="mobile-btn mobile-btn--secondary"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main class="subpage-main">
+    <section class="subpage-hero">
+      <div class="container subpage-hero__inner">
+        <div>
+          <p class="subpage-eyebrow"><i class="fas fa-circle-question" aria-hidden="true"></i> Centrum odpowiedzi</p>
+          <h1 class="subpage-title">Najczęstsze pytania o <span class="gradient-text">AmiQPlace.</span></h1>
+          <p class="subpage-lead">Zebraliśmy pytania, które najczęściej pojawiają się przed startem sklepu: trial, płatności, domena, hosting, bezpieczeństwo i przenoszenie sprzedaży.</p>
+        </div>
+        <aside class="subpage-hero-card">
+          <div class="subpage-hero-card__top">
+            <span class="subpage-hero-card__icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
+            <span class="subpage-stat"><strong>24h</strong><span>czas odpowiedzi</span></span>
+          </div>
+          <h2>Nie znalazłeś odpowiedzi?</h2>
+          <p>Napisz do nas przez formularz kontaktowy. Ta sekcja może później zostać połączona z realnym centrum pomocy.</p>
+          <div class="subpage-actions">
+            <a href="kontakt.html" class="subpage-button subpage-button--ghost">Przejdź do kontaktu</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="subpage-section subpage-section--compact">
+      <div class="container faq-list">
+        <details class="faq-item" open>
+          <summary>Czy mogę przetestować AmiQPlace bez karty kredytowej?</summary>
+          <p>Tak. Trial trwa 14 dni i nie wymaga podawania karty. Po okresie testowym możesz wybrać plan lub zrezygnować bez dodatkowych kosztów.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy hosting jest wliczony w cenę?</summary>
+          <p>Tak, hosting jest częścią platformy. Dzięki temu nie musisz samodzielnie konfigurować serwera, certyfikatu SSL ani aktualizacji technicznych.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy mogę podpiąć własną domenę?</summary>
+          <p>Tak. Docelowo w panelu pojawi się prosty proces podpinania domeny wraz z instrukcjami DNS. Na etapie prototypu można przygotować tę sekcję pod integrację.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy AmiQPlace obsługuje płatności online?</summary>
+          <p>Projekt zakłada integracje z popularnymi operatorami płatności. W przyszłości możesz dopisać tu konkretne bramki, np. Przelewy24, Stripe lub PayU.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy mogę przenieść sklep z innej platformy?</summary>
+          <p>Tak, planujemy import produktów, kategorii i klientów. W pierwszej wersji można zacząć od ręcznego importu CSV, a później dodać automatyczne migracje.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy moje dane są bezpieczne?</summary>
+          <p>Założeniem platformy jest szyfrowane połączenie, bezpieczne logowanie, kopie zapasowe i rozdzielenie uprawnień w panelu. Produkcyjnie wymaga to backendu i polityk bezpieczeństwa.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="o-nas.html">O nas</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+</body>
+</html>

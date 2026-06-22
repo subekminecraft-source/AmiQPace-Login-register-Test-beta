@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>O nas — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Poznaj AmiQPlace — nowoczesną platformę e-commerce dla firm, które chcą sprzedawać online bez barier technicznych.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Podstrony.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage-body">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html" aria-current="page">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <a href="Login.html" class="login">Zaloguj się</a>
+
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Otwórz lub zamknij menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu-drawer" role="dialog" aria-modal="true" aria-label="Menu nawigacji mobilnej" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu-header">
+        <img class="logo__img logo__img--drawer" src="assets/amiqplace-logo.png" alt="" width="200" height="34" decoding="async">
+        <button type="button" class="close-menu" aria-label="Zamknij menu">
+          <span class="close-menu__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" aria-label="Nawigacja główna (mobile)">
+        <a href="o-nas.html" aria-current="page">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <div class="mobile-menu__divider" aria-hidden="true"></div>
+      <div class="mobile-auth">
+        <a href="Register.html" class="mobile-btn mobile-btn--primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto</a>
+        <a href="Login.html" class="mobile-btn mobile-btn--secondary"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main class="subpage-main">
+    <section class="subpage-hero">
+      <div class="container subpage-hero__inner">
+        <div>
+          <p class="subpage-eyebrow"><i class="fas fa-sparkles" aria-hidden="true"></i> O AmiQPlace</p>
+          <h1 class="subpage-title">Budujemy platformę, która upraszcza <span class="gradient-text">sprzedaż online.</span></h1>
+          <p class="subpage-lead">
+            AmiQPlace powstało z myślą o osobach, które chcą uruchomić sklep bez kodowania, bez walki z hostingiem i bez skomplikowanych konfiguracji. Łączymy kreator, panel sprzedaży, płatności i narzędzia rozwoju w jednym miejscu.
+          </p>
+          <div class="subpage-actions">
+            <a href="Register.html" class="subpage-button"><i class="fas fa-rocket" aria-hidden="true"></i> Rozpocznij za darmo</a>
+            <a href="plany.html" class="subpage-button subpage-button--ghost">Zobacz plany</a>
+          </div>
+        </div>
+
+        <aside class="subpage-hero-card">
+          <div class="subpage-hero-card__top">
+            <span class="subpage-hero-card__icon"><i class="fas fa-store" aria-hidden="true"></i></span>
+            <span class="subpage-stat"><strong>14 dni</strong><span>testu bez karty</span></span>
+          </div>
+          <h2>Od pomysłu do pierwszej sprzedaży</h2>
+          <p>Projektujemy AmiQPlace tak, aby właściciel sklepu mógł skupić się na ofercie, marce i obsłudze klientów, a nie na technicznych detalach.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="subpage-section subpage-section--compact">
+      <div class="container subpage-grid">
+        <article class="subpage-card">
+          <span class="subpage-card__icon"><i class="fas fa-compass" aria-hidden="true"></i></span>
+          <h3>Misja</h3>
+          <p>Ułatwić start w e-commerce firmom, twórcom i lokalnym markom, które potrzebują prostego, eleganckiego i bezpiecznego narzędzia do sprzedaży.</p>
+        </article>
+        <article class="subpage-card">
+          <span class="subpage-card__icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+          <h3>Prosty ekosystem</h3>
+          <p>Panel, sklep, hosting, bezpieczeństwo i rozwój sprzedaży mają działać razem, bez żonglowania wieloma usługami.</p>
+        </article>
+        <article class="subpage-card">
+          <span class="subpage-card__icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+          <h3>Bezpieczeństwo</h3>
+          <p>W centrum projektu są konta użytkowników, kopie zapasowe, SSL i przejrzyste procesy, które można rozwijać wraz ze skalą biznesu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="subpage-section">
+      <div class="container subpage-panel">
+        <h2>Co możesz tu dopisać później?</h2>
+        <p>Ta podstrona jest przygotowana jako profesjonalna baza pod rozwój. W przyszłości możesz dodać zdjęcia zespołu, historię marki, case studies, opinie klientów, mapę rozwoju produktu albo liczby pokazujące skalę platformy.</p>
+        <ul class="subpage-list">
+          <li><i class="fas fa-check" aria-hidden="true"></i> Sekcja z zespołem i wartościami firmy.</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Oś czasu: od pomysłu do premiery platformy.</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Realne statystyki: liczba sklepów, zamówień, integracji i wdrożeń.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="faq.html">FAQ</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+</body>
+</html>

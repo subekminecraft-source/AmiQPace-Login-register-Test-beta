@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Rejestracja — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Załóż konto AmiQPlace — 14 dni za darmo, bez karty kredytowej.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="AmiQPlace - Auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <header class="header auth-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <a href="Login.html" class="login">Zaloguj się</a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Otwórz lub zamknij menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+      >
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <div
+    class="mobile-menu"
+    id="mobile-menu-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu nawigacji mobilnej"
+    aria-hidden="true"
+  >
+    <div class="mobile-menu__inner mobile-menu__inner--account">
+      <div class="mobile-menu__sheet">
+        <header class="mobile-menu__head">
+          <span class="mobile-menu__eyebrow">AmiQPlace</span>
+          <button type="button" class="mobile-menu__close close-menu" aria-label="Zamknij menu">
+            <i class="fas fa-xmark" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <div class="account-user__profile mobile-menu__profile">
+          <span class="account-user__avatar" aria-hidden="true">
+            <i class="far fa-user"></i>
+          </span>
+          <span>
+            <span class="account-user__name mobile-menu__name">Gość</span>
+            <span class="account-user__status mobile-menu__status">Zaloguj się lub załóż konto</span>
+          </span>
+        </div>
+
+        <nav class="account-user__links mobile-menu__nav" aria-label="Nawigacja główna (mobile)">
+          <a href="o-nas.html"><i class="fas fa-circle-info" aria-hidden="true"></i> O nas</a>
+          <a href="faq.html"><i class="fas fa-circle-question" aria-hidden="true"></i> FAQ</a>
+          <a href="plany.html"><i class="fas fa-layer-group" aria-hidden="true"></i> Plany</a>
+          <a href="regulamin.html"><i class="fas fa-scale-balanced" aria-hidden="true"></i> Regulamin</a>
+          <a href="kontakt.html"><i class="fas fa-message" aria-hidden="true"></i> Kontakt</a>
+        </nav>
+
+        <div class="mobile-menu__auth mobile-auth" data-mobile-auth>
+          <div class="account-user__links mobile-menu__auth-links">
+            <a href="Register.html" class="mobile-menu__auth-primary">
+              <i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto
+            </a>
+            <a href="Login.html">
+              <i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się
+            </a>
+          </div>
+          <p class="mobile-menu__hint">14 dni za darmo — bez karty kredytowej.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main>
+    <div class="auth-layout">
+      <aside class="auth-aside">
+        <div class="auth-aside__ambient" aria-hidden="true">
+          <div class="auth-aside__orb auth-aside__orb--a"></div>
+          <div class="auth-aside__orb auth-aside__orb--b"></div>
+        </div>
+        <div class="auth-aside__inner">
+          <p class="auth-aside__eyebrow"><i class="fas fa-gift" aria-hidden="true"></i> 14 dni za darmo</p>
+          <h1 class="auth-aside__title">Dołącz do <span class="gradient-text">AmiQPlace</span></h1>
+          <p class="auth-aside__lead">
+            Po rejestracji wyślemy kod weryfikacyjny (w tej wersji demonstracyjnej kod zapisuje się lokalnie w przeglądarce — w produkcji trafiłby na Twój e-mail).
+          </p>
+          <ul class="auth-aside__list">
+            <li><i class="fas fa-store" aria-hidden="true"></i> Pełny panel sklepu od pierwszego dnia</li>
+            <li><i class="fas fa-credit-card" aria-hidden="true"></i> Bez karty — wybierzesz plan, gdy będziesz gotowy</li>
+            <li><i class="fas fa-envelope-circle-check" aria-hidden="true"></i> Weryfikacja e-mail przed pierwszym logowaniem</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="auth-panel">
+        <div class="auth-panel__mesh" aria-hidden="true"></div>
+        <div class="auth-card">
+          <div class="auth-card__inner">
+            <div class="auth-card__head">
+              <h1>Utwórz konto</h1>
+              <p>Masz już konto? <a href="Login.html">Przejdź do logowania</a></p>
+            </div>
+
+            <form class="auth-form" id="form-register" novalidate>
+              <div class="auth-field">
+                <label for="register-name">Imię i nazwisko</label>
+                <input
+                  id="register-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  minlength="2"
+                  placeholder="Jan Kowalski"
+                >
+                <p class="auth-field__error" role="alert"></p>
+              </div>
+
+              <div class="auth-field">
+                <label for="register-email">E-mail służbowy</label>
+                <input
+                  id="register-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  placeholder="jan@twojafirma.pl"
+                >
+                <p class="auth-field__hint">Na ten adres wyślemy link aktywacyjny i faktury.</p>
+                <p class="auth-field__error" role="alert"></p>
+              </div>
+
+              <div class="auth-field">
+                <label for="register-password">Hasło</label>
+                <div class="auth-field__wrap">
+                  <input
+                    id="register-password"
+                    name="password"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                    minlength="8"
+                    placeholder="Min. 8 znaków"
+                  >
+                  <button
+                    type="button"
+                    class="auth-toggle-pass"
+                    data-toggle-password
+                    aria-controls="register-password"
+                    aria-label="Pokaż hasło"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="auth-strength" id="register-strength" aria-hidden="true">
+                  <span class="auth-strength__seg"></span>
+                  <span class="auth-strength__seg"></span>
+                  <span class="auth-strength__seg"></span>
+                  <span class="auth-strength__seg"></span>
+                </div>
+                <p class="auth-strength__label" id="register-strength-label">
+                  Minimum 8 znaków, wielka i mała litera, cyfra
+                </p>
+                <p class="auth-field__error" role="alert"></p>
+              </div>
+
+              <div class="auth-field">
+                <label for="register-password2">Powtórz hasło</label>
+                <div class="auth-field__wrap">
+                  <input
+                    id="register-password2"
+                    name="password2"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                    placeholder="Powtórz hasło"
+                  >
+                  <button
+                    type="button"
+                    class="auth-toggle-pass"
+                    data-toggle-password
+                    aria-controls="register-password2"
+                    aria-label="Pokaż hasło"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="auth-field__error" role="alert"></p>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-check" for="register-terms">
+                  <input type="checkbox" id="register-terms" name="terms" required>
+                  <span>Akceptuję <a class="auth-link-muted" href="regulamin.html">regulamin</a> i <a class="auth-link-muted" href="regulamin.html">politykę prywatności</a></span>
+                </label>
+                <p class="auth-field__error" role="alert"></p>
+              </div>
+
+              <div class="auth-field">
+                <label class="auth-check" for="register-news">
+                  <input type="checkbox" id="register-news" name="newsletter">
+                  <span>Chcę otrzymywać porady o e-commerce (opcjonalnie)</span>
+                </label>
+              </div>
+
+              <button type="submit" class="auth-submit">
+                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                Dalej — weryfikacja e-mail
+              </button>
+            </form>
+
+            <p class="auth-divider" role="presentation">lub</p>
+
+            <div class="auth-social">
+              <button type="button" class="auth-social__btn" disabled title="Wymaga konfiguracji OAuth po stronie serwera">
+                <i class="fab fa-google" aria-hidden="true"></i>
+                Google
+              </button>
+              <button type="button" class="auth-social__btn" disabled title="Wymaga konfiguracji OAuth po stronie serwera">
+                <i class="fab fa-apple" aria-hidden="true"></i>
+                Apple
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="regulamin.html">Regulamin</a>
+        <a href="regulamin.html">Prywatność</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="supabase-auth.js"></script>
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+</body>
+</html>

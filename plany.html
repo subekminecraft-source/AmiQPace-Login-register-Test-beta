@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Plany — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Wybierz plan AmiQPlace dla swojego sklepu online.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="AmiQPlace - Podstrony.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage-body plans-page">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html" aria-current="page">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <a href="Login.html" class="login">Zaloguj się</a>
+
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Otwórz lub zamknij menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu-drawer" role="dialog" aria-modal="true" aria-label="Menu nawigacji mobilnej" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu-header">
+        <img class="logo__img logo__img--drawer" src="assets/amiqplace-logo.png" alt="" width="200" height="34" decoding="async">
+        <button type="button" class="close-menu" aria-label="Zamknij menu">
+          <span class="close-menu__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" aria-label="Nawigacja główna (mobile)">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html" aria-current="page">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <div class="mobile-menu__divider" aria-hidden="true"></div>
+      <div class="mobile-auth">
+        <a href="Register.html" class="mobile-btn mobile-btn--primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto</a>
+        <a href="Login.html" class="mobile-btn mobile-btn--secondary"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main>
+    <section class="pricing-preview" aria-labelledby="pricing-page-heading">
+      <div class="pricing-preview__glow pricing-preview__glow--cyan" aria-hidden="true"></div>
+      <div class="pricing-preview__glow pricing-preview__glow--violet" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="section-head pricing-preview__head">
+          <span class="section-badge">Wybór planu</span>
+          <h1 id="pricing-page-heading">
+            Wybierz pakiet dla swojego sklepu.<br>
+            <span class="gradient-text">Możesz zmienić go później.</span>
+          </h1>
+          <p>To osobna podstrona płatności/wyboru planu. Na razie przyciski symulują wybór, a docelowo powinny prowadzić do checkoutu.</p>
+        </div>
+
+        <ul class="pricing-preview__trust" aria-label="Korzyści subskrypcji">
+          <li><i class="fas fa-shield-halved" aria-hidden="true"></i> Bezpieczne płatności</li>
+          <li><i class="fas fa-rotate" aria-hidden="true"></i> Zmiana planu w panelu</li>
+          <li><i class="fas fa-file-invoice" aria-hidden="true"></i> Faktura VAT</li>
+          <li><i class="fas fa-headset" aria-hidden="true"></i> Wsparcie po polsku</li>
+        </ul>
+
+        <aside class="pricing-trial-banner" aria-labelledby="pricing-trial-heading">
+          <div class="pricing-trial-banner__glow" aria-hidden="true"></div>
+          <div class="pricing-trial-banner__content">
+            <div class="pricing-trial-banner__copy">
+              <span class="pricing-trial-banner__badge"><i class="fas fa-gift" aria-hidden="true"></i> 14 dni za darmo</span>
+              <h2 id="pricing-trial-heading" class="pricing-trial-banner__title">Trial — przetestuj panel bez karty</h2>
+              <p class="pricing-trial-banner__desc">1 sklep, 5 produktów, pełny edytor i płatności demo. Po okresie próbnym wybierz plan płatny — bez ukrytych opłat.</p>
+              <ul class="pricing-trial-banner__highlights">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Hosting + SSL</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Edytor sklepu live</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Portfel demo</li>
+              </ul>
+            </div>
+            <div class="pricing-trial-banner__actions">
+              <a href="Register.html" class="pricing-trial-banner__cta">Rozpocznij Trial</a>
+              <button type="button" class="pricing-card__more" data-plan-details="trial">Pokaż więcej funkcji</button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="pricing-preview__grid">
+          <article class="pricing-card" data-plan="starter">
+            <span class="pricing-card__index" aria-hidden="true">01</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Starter</span>
+              <p class="pricing-card__tagline">Pierwsze kroki w e-commerce</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">19,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Do 15 produktów</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Hosting i SSL w cenie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Gotowy szablon sklepu</li>
+                <li class="is-muted"><i class="fas fa-minus" aria-hidden="true"></i> Automatyzacje sprzedaży</li>
+              </ul>
+              <button type="button" class="pricing-card__btn pricing-card__btn--ghost" data-plan-select="Starter">Wybierz Starter</button>
+              <button type="button" class="pricing-card__more" data-plan-details="starter">Pokaż więcej funkcji</button>
+            </div>
+          </article>
+
+          <article class="pricing-card" data-plan="pro-seller">
+            <span class="pricing-card__index" aria-hidden="true">02</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Pro Seller</span>
+              <p class="pricing-card__tagline">Skalowanie bez komplikacji</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">39,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Do 50 produktów</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> <strong>Własna domena + SSL</strong></li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Kopie zapasowe i statystyki</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Integracje płatności</li>
+              </ul>
+              <button type="button" class="pricing-card__btn pricing-card__btn--ghost" data-plan-select="Pro Seller">Wybierz Pro Seller</button>
+              <button type="button" class="pricing-card__more" data-plan-details="pro-seller">Pokaż więcej funkcji</button>
+            </div>
+          </article>
+
+          <article class="pricing-card pricing-card--featured" data-plan="biznes">
+            <div class="pricing-card__ribbon" aria-hidden="true">Polecany</div>
+            <span class="pricing-card__index" aria-hidden="true">03</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Biznes</span>
+              <p class="pricing-card__tagline">Dla rosnących sklepów</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">59,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Nielimitowane produkty</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Automatyzacje i kampanie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Wyższa wydajność i kopie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Priorytetowe wsparcie</li>
+              </ul>
+              <button type="button" class="pricing-card__btn pricing-card__btn--primary" data-plan-select="Biznes">Rozpocznij z Biznes</button>
+              <button type="button" class="pricing-card__more" data-plan-details="biznes">Pokaż więcej funkcji</button>
+            </div>
+          </article>
+
+          <article class="pricing-card" data-plan="professional">
+            <span class="pricing-card__index" aria-hidden="true">04</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Professional</span>
+              <p class="pricing-card__tagline">Maksymalna kontrola i skala</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">89,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Wszystko z planu Biznes</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> API i zaawansowane raporty</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Konsultacje wdrożeniowe</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Dedykowany menedżer konta</li>
+              </ul>
+              <button type="button" class="pricing-card__btn pricing-card__btn--ghost" data-plan-select="Professional">Wybierz Professional</button>
+              <button type="button" class="pricing-card__more" data-plan-details="professional">Pokaż więcej funkcji</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="pricing-preview__footnote">
+          Ceny netto miesięcznie. Plan zmienisz w panelu w dowolnym momencie.
+        </p>
+
+        <section class="plan-compare" id="porownanie" aria-labelledby="plan-compare-heading">
+          <div class="plan-compare__head">
+            <span class="section-badge">Porównanie</span>
+            <h2 id="plan-compare-heading">Wszystkie funkcje planów <span class="gradient-text">obok siebie</span></h2>
+            <p>Szybka tabela porównawcza Trial i planów płatnych. Szczegóły w modalu — kliknij „Pokaż więcej funkcji” na karcie planu.</p>
+          </div>
+          <div data-plan-compare></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="konto-start.html">Start konta</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+  <script src="plans-features.js" defer></script>
+</body>
+</html>

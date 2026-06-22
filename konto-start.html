@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Start konta — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Wybierz plan lub uruchom 14-dniowy trial AmiQPlace po rejestracji.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Podstrony.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="account-page account-start-page">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" data-account-logo aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <a href="Login.html" class="login">Zaloguj się</a>
+    </div>
+  </header>
+
+  <main class="account-main">
+    <section class="start-onboard" aria-labelledby="account-choice-heading">
+      <div class="start-onboard__ambient" aria-hidden="true">
+        <div class="start-onboard__orb start-onboard__orb--a"></div>
+        <div class="start-onboard__orb start-onboard__orb--b"></div>
+      </div>
+
+      <div class="container start-onboard__layout">
+        <header class="start-onboard__intro">
+          <span class="start-onboard__badge"><i class="fas fa-hand-sparkles" aria-hidden="true"></i> Witamy!</span>
+          <h1 id="account-choice-heading">Wybierz, jak chcesz zacząć z <span class="gradient-text">AmiQPlace.</span></h1>
+          <p>Twoje konto jest gotowe, ale nie masz jeszcze aktywnego planu. Możesz od razu wybrać pakiet albo uruchomić pełny dostęp testowy na 14 dni bez karty.</p>
+
+          <ul class="start-onboard__status" aria-label="Status konta">
+            <li><i class="fas fa-circle-check" aria-hidden="true"></i> Konto utworzone</li>
+            <li><i class="fas fa-hourglass-half" aria-hidden="true"></i> Plan do wyboru</li>
+            <li><i class="fas fa-credit-card" aria-hidden="true"></i> Trial bez karty</li>
+          </ul>
+        </header>
+
+        <div class="start-onboard__paths">
+          <a href="plany.html" class="start-path-card account-option">
+            <span class="start-path-card__rail" aria-hidden="true">
+              <span class="start-path-card__step">01</span>
+            </span>
+            <span class="start-path-card__body">
+              <span class="start-path-card__icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+              <span class="start-path-card__copy">
+                <h2>Wybierz plan</h2>
+                <p>Porównaj pakiety, wybierz zakres funkcji i przygotuj sklep do regularnej sprzedaży. To najlepsza opcja, gdy już wiesz, czego potrzebujesz.</p>
+              </span>
+            </span>
+            <span class="start-path-card__cta account-option__footer">
+              <span>Przejdź do planów</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </span>
+          </a>
+
+          <div class="start-onboard__divider" role="separator" aria-label="Alternatywa">
+            <span>lub</span>
+          </div>
+
+          <a href="#" class="start-path-card start-path-card--trial account-option account-option--trial" data-start-trial>
+            <span class="start-path-card__rail start-path-card__rail--trial" aria-hidden="true">
+              <span class="start-path-card__step">02</span>
+            </span>
+            <span class="start-path-card__body">
+              <span class="start-path-card__icon start-path-card__icon--trial"><i class="fas fa-gift" aria-hidden="true"></i></span>
+              <span class="start-path-card__copy">
+                <h2>Wypróbuj 2 tygodnie za darmo</h2>
+                <p>Uruchom trial i sprawdź panel, szablony, produkty, zamówienia oraz ustawienia sklepu bez zobowiązań i bez płatności na start.</p>
+              </span>
+            </span>
+            <span class="start-path-card__cta account-option__footer">
+              <span>Rozpocznij trial</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </span>
+          </a>
+
+          <p class="start-onboard__note">To jest szablon widoku po rejestracji. Docelowo przycisk trial powinien aktywować okres testowy w backendzie, a wybór planu powinien przejść do płatności.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="plany.html">Plany</a>
+        <a href="faq.html">Pomoc</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="supabase-auth.js"></script>
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+</body>
+</html>
+
+<html>
+  <heat>
+    
+ 

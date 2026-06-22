@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<!-- Strona główna: hero → dlaczego → cennik → jak działa → panel admin → start → stopka -->
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>AmiQPlace – Futurystyczna Platforma E-commerce</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AmiQPlace">
+  <meta property="og:image" content="https://amiqplace.com/assets/icon-512x512.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://amiqplace.com/assets/icon-512x512.png">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <a href="Login.html" class="login">Zaloguj się</a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Otwórz lub zamknij menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+      >
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Drawer + overlay tylko dla ≤900px (CSS); pod nagłówkiem w DOM — nie „nad” paskiem -->
+  <div
+    class="mobile-menu"
+    id="mobile-menu-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu nawigacji mobilnej"
+    aria-hidden="true"
+  >
+    <div class="mobile-menu__inner mobile-menu__inner--account">
+      <div class="mobile-menu__sheet">
+        <header class="mobile-menu__head">
+          <span class="mobile-menu__eyebrow">AmiQPlace</span>
+          <button type="button" class="mobile-menu__close close-menu" aria-label="Zamknij menu">
+            <i class="fas fa-xmark" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <div class="account-user__profile mobile-menu__profile">
+          <span class="account-user__avatar" aria-hidden="true">
+            <i class="far fa-user"></i>
+          </span>
+          <span>
+            <span class="account-user__name mobile-menu__name">Gość</span>
+            <span class="account-user__status mobile-menu__status">Zaloguj się lub załóż konto</span>
+          </span>
+        </div>
+
+        <nav class="account-user__links mobile-menu__nav" aria-label="Nawigacja główna (mobile)">
+          <a href="o-nas.html"><i class="fas fa-circle-info" aria-hidden="true"></i> O nas</a>
+          <a href="faq.html"><i class="fas fa-circle-question" aria-hidden="true"></i> FAQ</a>
+          <a href="plany.html"><i class="fas fa-layer-group" aria-hidden="true"></i> Plany</a>
+          <a href="regulamin.html"><i class="fas fa-scale-balanced" aria-hidden="true"></i> Regulamin</a>
+          <a href="kontakt.html"><i class="fas fa-message" aria-hidden="true"></i> Kontakt</a>
+        </nav>
+
+        <div class="mobile-menu__auth mobile-auth" data-mobile-auth>
+          <div class="account-user__links mobile-menu__auth-links">
+            <a href="Register.html" class="mobile-menu__auth-primary">
+              <i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto
+            </a>
+            <a href="Login.html">
+              <i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się
+            </a>
+          </div>
+          <p class="mobile-menu__hint">14 dni za darmo — bez karty kredytowej.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main>
+    <!-- HERO — pierwszy ekran: propozycja wartości, CTA, showcase -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__ambient" aria-hidden="true">
+        <div class="hero__orb hero__orb--a"></div>
+        <div class="hero__orb hero__orb--b"></div>
+        <div class="hero__mesh"></div>
+      </div>
+
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <p class="hero-eyebrow">
+            <span class="hero-eyebrow__pulse" aria-hidden="true"></span>
+            Platforma e-commerce · hosting w cenie
+          </p>
+
+          <h1 class="hero-title" id="hero-heading">
+            Twój sklep online<br>
+            w kilka minut —<br>
+            <span class="gradient-text">bez barier technicznych.</span>
+          </h1>
+
+          <p class="hero-description">
+            <strong>AmiQPlace</strong> łączy prosty kreator, bezpieczne płatności i hosting
+            w jednym miejscu. Ty skupiasz się na produktach — resztą zajmujemy się my.
+          </p>
+
+          <ul class="hero-pills" aria-label="Kluczowe korzyści">
+            <li><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Kreator bez kodu</li>
+            <li><i class="fas fa-shield-halved" aria-hidden="true"></i> SSL i kopie zapasowe</li>
+            <li><i class="fas fa-headset" aria-hidden="true"></i> Wsparcie po polsku</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a href="Register.html" class="btn-primary hero-btn-primary">
+              <span>Rozpocznij za darmo</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#how-it-works" class="btn-secondary hero-btn-secondary">Zobacz, jak to działa</a>
+          </div>
+
+          <p class="hero-meta">14 dni za darmo · bez karty kredytowej · anulujesz w panelu</p>
+
+          <div class="hero-stats" role="list">
+            <div class="stat-card" role="listitem">
+              <strong>0 zł</strong>
+              <span>na start</span>
+            </div>
+            <div class="stat-card" role="listitem">
+              <strong>14 dni</strong>
+              <span>wersja testowa</span>
+            </div>
+            <div class="stat-card" role="listitem">
+              <strong>∞</strong>
+              <span>możliwości</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-showcase">
+            <figure class="hero-showcase__frame">
+              <div class="hero-showcase__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="hero-showcase__url">panel.amiqplace.pl</span>
+              </div>
+              <div class="hero-showcase__screen">
+                <div class="home-mock home-mock--dashboard home-mock--compact" role="img" aria-label="Podgląd pulpitu panelu AmiQPlace">
+                  <aside class="home-mock__sidebar">
+                    <span class="home-mock__logo"></span>
+                    <span class="home-mock__nav is-active"></span>
+                    <span class="home-mock__nav"></span>
+                    <span class="home-mock__nav"></span>
+                  </aside>
+                  <div class="home-mock__main">
+                    <div class="home-mock__kpis">
+                      <div class="home-mock__kpi"><em>2 840 zł</em><i>Sprzedaż</i></div>
+                      <div class="home-mock__kpi"><em>128</em><i>Wizyty</i></div>
+                      <div class="home-mock__kpi home-mock__kpi--live"><em>Live</em><i>Sklep</i></div>
+                    </div>
+                    <div class="home-mock__chart home-mock__chart--solo">
+                      <span class="home-mock__chart-bar" style="--h:52%"></span>
+                      <span class="home-mock__chart-bar" style="--h:72%"></span>
+                      <span class="home-mock__chart-bar" style="--h:48%"></span>
+                      <span class="home-mock__chart-bar" style="--h:88%"></span>
+                      <span class="home-mock__chart-bar" style="--h:65%"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption class="hero-showcase__caption">
+                <span class="hero-showcase__caption-main">
+                  <i class="fas fa-gauge-high" aria-hidden="true"></i>
+                  Panel sprzedawcy — pulpit i podgląd
+                </span>
+                <span class="hero-showcase__caption-live">
+                  <span class="hero-showcase__live-dot" aria-hidden="true"></span>
+                  Demo live
+                </span>
+              </figcaption>
+            </figure>
+
+            <div class="hero-float hero-float--tl">
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
+              <div>
+                <strong>KPI na start</strong>
+                <span>sprzedaż, odwiedziny, status sklepu</span>
+              </div>
+            </div>
+            <div class="hero-float hero-float--br">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <div>
+                <strong>Podgląd obok edycji</strong>
+                <span>desktop i mobile w jednym widoku</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Pasek zaufania — korzyści z trialu i platformy -->
+    <section class="home-trust" aria-label="Dlaczego warto zacząć z AmiQPlace">
+      <div class="container home-trust__inner">
+        <ul class="home-trust__list">
+          <li>
+            <span class="home-trust__icon" aria-hidden="true"><i class="fas fa-gift"></i></span>
+            <span class="home-trust__text"><strong>14 dni trial</strong> bez karty kredytowej</span>
+          </li>
+          <li>
+            <span class="home-trust__icon" aria-hidden="true"><i class="fas fa-cloud"></i></span>
+            <span class="home-trust__text"><strong>Hosting i SSL</strong> w cenie subskrypcji</span>
+          </li>
+          <li>
+            <span class="home-trust__icon" aria-hidden="true"><i class="fas fa-layer-group"></i></span>
+            <span class="home-trust__text"><strong>Jeden panel</strong> zamiast wielu narzędzi</span>
+          </li>
+          <li>
+            <span class="home-trust__icon" aria-hidden="true"><i class="fas fa-headset"></i></span>
+            <span class="home-trust__text"><strong>Wsparcie</strong> po polsku — odpowiedź do 24h</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Dlaczego AmiQPlace — karty korzyści (BEM: problems__) -->
+    <section class="problems" id="dlaczego-amiqplace" aria-labelledby="problems-heading">
+      <div class="problems__glow problems__glow--left" aria-hidden="true"></div>
+      <div class="problems__glow problems__glow--right" aria-hidden="true"></div>
+
+      <div class="container problems__container">
+        <header class="section-head problems__intro">
+          <span class="section-badge">Dlaczego AmiQPlace?</span>
+          <h2 id="problems-heading">
+            Od pomysłu do pierwszej sprzedaży —<br>
+            <span class="gradient-text">bez walki z technologią.</span>
+          </h2>
+          <p>
+            AmiQPlace powstało dla firm, twórców i lokalnych marek, które chcą sprzedawać online
+            bez kodowania i bez żonglowania hostingiem. Ty rozwijasz ofertę — my dbamy o resztę.
+          </p>
+        </header>
+
+        <div class="problems__grid" data-problems-grid id="problems-grid">
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">01</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-bolt"></i></div>
+            <h3 class="problems__title">Załóż sklep w 10 minut</h3>
+            <p class="problems__text">
+              Bez instalacji, bez konfiguracji serwera i bez skomplikowanych ustawień.
+              Twój sklep może działać szybciej niż zdążysz wypić kawę.
+            </p>
+          </article>
+
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">02</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+            <h3 class="problems__title">Bez kodowania</h3>
+            <p class="problems__text">
+              Nie musisz znać programowania. Intuicyjny kreator pozwala tworzyć
+              profesjonalny sklep metodą „kliknij i gotowe”.
+            </p>
+          </article>
+
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">03</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+            <h3 class="problems__title">Wszystko w jednym miejscu</h3>
+            <p class="problems__text">
+              Hosting, sklep, panel zarządzania i statystyki — nie musisz korzystać
+              z wielu narzędzi ani płacić za dodatkowe usługi.
+            </p>
+          </article>
+
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">04</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-credit-card"></i></div>
+            <h3 class="problems__title">Płatności gotowe do działania</h3>
+            <p class="problems__text">
+              Podłącz płatności online i zacznij przyjmować zamówienia od razu.
+              Bez skomplikowanych integracji i formalności.
+            </p>
+          </article>
+
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">05</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-plug"></i></div>
+            <h3 class="problems__title">Integracje i wtyczki sprzedażowe</h3>
+            <p class="problems__text">
+              Narzędzia marketingowe, wysyłki i automatyzacje pomagają zwiększać
+              sprzedaż bez dodatkowej pracy.
+            </p>
+          </article>
+
+          <article class="problems__card">
+            <span class="problems__index" aria-hidden="true">06</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+            <h3 class="problems__title">Rozwijaj biznes bez ograniczeń</h3>
+            <p class="problems__text">
+              Skaluj sprzedaż, analizuj wyniki i rozwijaj swój sklep,
+              gdy Twoja marka zacznie rosnąć.
+            </p>
+          </article>
+
+          <article class="problems__card problems__card--accent">
+            <span class="problems__index" aria-hidden="true">07</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+            <h3 class="problems__title">Skup się na sprzedaży</h3>
+            <p class="problems__text">
+              Zamiast walczyć z technologią, poświęć czas na rozwój marki,
+              marketing i budowanie relacji z klientami.
+            </p>
+          </article>
+
+          <article class="problems__card problems__card--accent">
+            <span class="problems__index" aria-hidden="true">08</span>
+            <div class="problems__icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+            <h3 class="problems__title">Bezpieczeństwo i stabilność</h3>
+            <p class="problems__text">
+              Twoje dane i sklep są chronione. Platforma działa stabilnie,
+              abyś mógł sprzedawać bez stresu.
+            </p>
+          </article>
+        </div>
+
+        <div class="problems__toolbar">
+          <button
+            type="button"
+            class="problems__toggle why-show-more"
+            data-problems-toggle
+            aria-expanded="false"
+            aria-controls="problems-grid"
+          >
+            Pokaż więcej <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plany: kotwica #plans dla linków w menu -->
+    <section class="pricing-preview" id="plans" aria-labelledby="pricing-preview-heading">
+      <div class="pricing-preview__glow pricing-preview__glow--cyan" aria-hidden="true"></div>
+      <div class="pricing-preview__glow pricing-preview__glow--violet" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="section-head pricing-preview__head">
+          <span class="section-badge">Subskrypcja</span>
+          <h2 id="pricing-preview-heading">
+            Przejrzyste plany dla Twojego sklepu.<br>
+            Zacznij mało, <span class="gradient-text">skaluj bez stresu.</span>
+          </h2>
+          <p>
+            Wybierz pakiet dopasowany do etapu biznesu. Zawsze możesz zmienić plan,
+            gdy sklep zacznie rosnąć.
+          </p>
+        </div>
+
+        <ul class="pricing-preview__trust" aria-label="Korzyści subskrypcji">
+          <li><i class="fas fa-shield-halved" aria-hidden="true"></i> Bezpieczne płatności</li>
+          <li><i class="fas fa-rotate" aria-hidden="true"></i> Zmiana planu w panelu</li>
+          <li><i class="fas fa-file-invoice" aria-hidden="true"></i> Faktura VAT</li>
+          <li><i class="fas fa-headset" aria-hidden="true"></i> Wsparcie po polsku</li>
+        </ul>
+
+        <div class="pricing-preview__grid">
+          <article class="pricing-card" data-plan="starter">
+            <span class="pricing-card__index" aria-hidden="true">01</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Starter</span>
+              <p class="pricing-card__tagline">Pierwsze kroki w e-commerce</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">19,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Do 15 produktów</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Hosting i SSL w cenie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Gotowy szablon sklepu</li>
+                <li class="is-muted"><i class="fas fa-minus" aria-hidden="true"></i> Automatyzacje sprzedaży</li>
+              </ul>
+              <a href="Register.html" class="pricing-card__btn pricing-card__btn--ghost">Wybierz Starter</a>
+            </div>
+          </article>
+
+          <article class="pricing-card" data-plan="pro-seller">
+            <span class="pricing-card__index" aria-hidden="true">02</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Pro Seller</span>
+              <p class="pricing-card__tagline">Skalowanie bez komplikacji</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">39,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Do 50 produktów</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> <strong>Własna domena + SSL</strong></li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Kopie zapasowe i statystyki</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Integracje płatności</li>
+              </ul>
+              <a href="Register.html" class="pricing-card__btn pricing-card__btn--ghost">Wybierz Pro Seller</a>
+            </div>
+          </article>
+
+          <article class="pricing-card pricing-card--featured" data-plan="biznes">
+            <div class="pricing-card__ribbon" aria-hidden="true">Polecany</div>
+            <span class="pricing-card__index" aria-hidden="true">03</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Biznes</span>
+              <p class="pricing-card__tagline">Dla rosnących sklepów</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">59,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Nielimitowane produkty</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Automatyzacje i kampanie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Wyższa wydajność i kopie</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Priorytetowe wsparcie</li>
+              </ul>
+              <a href="Register.html" class="pricing-card__btn pricing-card__btn--primary">Rozpocznij z Biznes</a>
+            </div>
+          </article>
+
+          <article class="pricing-card" data-plan="professional">
+            <span class="pricing-card__index" aria-hidden="true">04</span>
+            <div class="pricing-card__inner">
+              <span class="pricing-card__label">Professional</span>
+              <p class="pricing-card__tagline">Maksymalna kontrola i skala</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">89,99</span>
+                <span class="pricing-card__currency">zł</span>
+                <span class="pricing-card__period">/ mies.</span>
+              </div>
+              <ul class="pricing-card__features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Wszystko z planu Biznes</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> API i zaawansowane raporty</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Konsultacje wdrożeniowe</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Dedykowany menedżer konta</li>
+              </ul>
+              <a href="Register.html" class="pricing-card__btn pricing-card__btn--ghost">Wybierz Professional</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="pricing-preview__footnote">
+          14 dni za darmo na start — plan zmienisz w panelu w dowolnym momencie, bez ukrytych opłat.
+          Ceny netto miesięcznie; po okresie próbnym pierwsza płatność wg wybranego pakietu.
+        </p>
+
+        <p class="pricing-preview__details-wrap">
+          <a href="plany.html#porownanie" class="pricing-preview__details-link">
+            Porównaj szczegóły funkcji planów
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Zobacz panel w akcji — screeny produktu -->
+    <section class="home-showcase" id="zobacz-panel" aria-labelledby="home-showcase-heading">
+      <div class="home-showcase__ambient" aria-hidden="true"></div>
+      <div class="home-showcase__glow home-showcase__glow--a" aria-hidden="true"></div>
+      <div class="home-showcase__glow home-showcase__glow--b" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head home-showcase__intro">
+          <span class="section-badge">Produkt w praktyce</span>
+          <h2 id="home-showcase-heading">
+            Panel sprzedawcy, który<br>
+            <span class="gradient-text">prowadzi Cię do sprzedaży.</span>
+          </h2>
+          <p>
+            Pulpit z KPI, edytor z podglądem na żywo i obsługa zamówień w jednym ekosystemie.
+            Jak w Shopify — tylko po polsku, z hostingiem w cenie i checklistą publikacji od pierwszego logowania.
+          </p>
+        </header>
+
+        <ul class="home-showcase__nav" aria-label="Moduły panelu w podglądzie">
+          <li class="is-active"><i class="fas fa-gauge-high" aria-hidden="true"></i> Pulpit</li>
+          <li><i class="fas fa-pen-to-square" aria-hidden="true"></i> Edytor sklepu</li>
+          <li><i class="fas fa-cart-shopping" aria-hidden="true"></i> Zamówienia</li>
+          <li><i class="fas fa-credit-card" aria-hidden="true"></i> Płatności</li>
+          <li><i class="fas fa-globe" aria-hidden="true"></i> Domena</li>
+        </ul>
+
+        <ul class="home-showcase__metrics" aria-label="Skrót możliwości panelu">
+          <li>
+            <span class="home-showcase__metric-icon" aria-hidden="true"><i class="fas fa-cubes"></i></span>
+            <strong>12+</strong><span>modułów w panelu</span>
+          </li>
+          <li>
+            <span class="home-showcase__metric-icon" aria-hidden="true"><i class="fas fa-eye"></i></span>
+            <strong>Live</strong><span>podgląd sklepu</span>
+          </li>
+          <li>
+            <span class="home-showcase__metric-icon" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+            <strong>1 klik</strong><span>publikacja zmian</span>
+          </li>
+          <li>
+            <span class="home-showcase__metric-icon" aria-hidden="true"><i class="fas fa-shield-halved"></i></span>
+            <strong>SSL</strong><span>w każdym planie</span>
+          </li>
+        </ul>
+
+        <div class="home-showcase__rows">
+          <article class="home-showcase__row">
+            <div class="home-shot" data-shot="dashboard">
+              <div class="home-shot__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="home-shot__url">panel.amiqplace.pl · Pulpit</span>
+              </div>
+              <div class="home-mock home-mock--dashboard" role="img" aria-label="Podgląd pulpitu panelu AmiQPlace z KPI i checklistą publikacji">
+                <aside class="home-mock__sidebar">
+                  <span class="home-mock__logo"></span>
+                  <span class="home-mock__nav is-active"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                </aside>
+                <div class="home-mock__main">
+                  <div class="home-mock__topbar">
+                    <span></span><span></span>
+                  </div>
+                  <div class="home-mock__kpis">
+                    <div class="home-mock__kpi"><em>2 840 zł</em><i>Sprzedaż dziś</i></div>
+                    <div class="home-mock__kpi"><em>128</em><i>Odwiedziny</i></div>
+                    <div class="home-mock__kpi"><em>24</em><i>Produkty</i></div>
+                    <div class="home-mock__kpi home-mock__kpi--live"><em>Live</em><i>Sklep online</i></div>
+                  </div>
+                  <div class="home-mock__split">
+                    <div class="home-mock__chart">
+                      <span class="home-mock__chart-bar" style="--h:42%"></span>
+                      <span class="home-mock__chart-bar" style="--h:68%"></span>
+                      <span class="home-mock__chart-bar" style="--h:55%"></span>
+                      <span class="home-mock__chart-bar" style="--h:82%"></span>
+                      <span class="home-mock__chart-bar" style="--h:61%"></span>
+                      <span class="home-mock__chart-bar" style="--h:74%"></span>
+                    </div>
+                    <div class="home-mock__checklist">
+                      <p>Droga do publikacji</p>
+                      <span class="is-done"><i></i> Szablon sklepu</span>
+                      <span class="is-done"><i></i> Baner i logo</span>
+                      <span class="is-active"><i></i> Płatności BLIK</span>
+                      <span><i></i> Pierwsze zamówienie</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="home-shot__badge home-shot__badge--tl"><i class="fas fa-chart-line" aria-hidden="true"></i> KPI na żywo</span>
+            </div>
+            <div class="home-showcase__copy">
+              <span class="home-showcase__step" aria-hidden="true">01</span>
+              <span class="home-showcase__tag"><i class="fas fa-gauge-high" aria-hidden="true"></i> Pulpit</span>
+              <h3>Widzisz biznes, zanim otworzysz Excela</h3>
+              <p>
+                Sprzedaż dnia, odwiedziny, liczba produktów i status sklepu — na jednym ekranie.
+                Checklist prowadzi Cię do publikacji krok po kroku, a podgląd pokazuje sklep tak,
+                jak zobaczą go klienci.
+              </p>
+              <ul class="home-showcase__list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> KPI i postęp publikacji</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Podgląd desktop / mobile</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Alerty magazynowe i zamówienia</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="home-showcase__row home-showcase__row--reverse">
+            <div class="home-shot" data-shot="editor">
+              <div class="home-shot__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="home-shot__url">panel.amiqplace.pl · Edytor sklepu</span>
+              </div>
+              <div class="home-mock home-mock--editor" role="img" aria-label="Podgląd edytora sklepu z formularzem i live preview">
+                <div class="home-mock__editor">
+                  <p class="home-mock__section-label">Branża i baner</p>
+                  <span class="home-mock__field home-mock__field--lg"></span>
+                  <span class="home-mock__field"></span>
+                  <span class="home-mock__field"></span>
+                  <div class="home-mock__swatches">
+                    <span></span><span></span><span class="is-active"></span><span></span>
+                  </div>
+                  <p class="home-mock__section-label">Sekcje sklepu</p>
+                  <span class="home-mock__toggle is-on"></span>
+                  <span class="home-mock__toggle"></span>
+                  <span class="home-mock__toggle is-on"></span>
+                </div>
+                <div class="home-mock__preview">
+                  <div class="home-mock__preview-bar">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="home-mock__preview-hero"></div>
+                  <div class="home-mock__preview-grid">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="home-mock__preview-chip">Podgląd na żywo</span>
+                </div>
+              </div>
+              <span class="home-shot__badge home-shot__badge--br"><i class="fas fa-eye" aria-hidden="true"></i> Live preview</span>
+            </div>
+            <div class="home-showcase__copy">
+              <span class="home-showcase__step" aria-hidden="true">02</span>
+              <span class="home-showcase__tag"><i class="fas fa-pen-to-square" aria-hidden="true"></i> Edytor</span>
+              <h3>Sklep obok ustawień — zero przełączania kart</h3>
+              <p>
+                Wybierz branżę, dopasuj baner i identyfikację marki. Po prawej stronie zawsze masz
+                żywy podgląd sklepu — zmiany widać od razu, bez odświeżania i bez zgadywania.
+              </p>
+              <ul class="home-showcase__list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Kreator branży i lookbook</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Baner, CTA i sekcje sklepu</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Podgląd obok formularza</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="home-showcase__row">
+            <div class="home-shot" data-shot="orders">
+              <div class="home-shot__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="home-shot__url">panel.amiqplace.pl · Zamówienia</span>
+              </div>
+              <div class="home-mock home-mock--orders" role="img" aria-label="Podgląd listy zamówień z statusami i płatnościami">
+                <div class="home-mock__orders-head">
+                  <span>Zamówienia</span>
+                  <em>3 nowe</em>
+                </div>
+                <div class="home-mock__order is-new">
+                  <div class="home-mock__order-top">
+                    <strong>#1042</strong>
+                    <span class="home-mock__order-badge">Do wysyłki</span>
+                  </div>
+                  <p>Anna K. · 189,00 zł · BLIK</p>
+                </div>
+                <div class="home-mock__order">
+                  <div class="home-mock__order-top">
+                    <strong>#1041</strong>
+                    <span class="home-mock__order-badge is-paid">Opłacone</span>
+                  </div>
+                  <p>Marek W. · 64,50 zł · Przelew</p>
+                </div>
+                <div class="home-mock__order">
+                  <div class="home-mock__order-top">
+                    <strong>#1040</strong>
+                    <span class="home-mock__order-badge is-done">Wysłane</span>
+                  </div>
+                  <p>Kasia P. · 312,00 zł · PayU</p>
+                </div>
+              </div>
+              <span class="home-shot__badge home-shot__badge--tl"><i class="fas fa-cart-shopping" aria-hidden="true"></i> Zamówienia live</span>
+            </div>
+            <div class="home-showcase__copy">
+              <span class="home-showcase__step" aria-hidden="true">03</span>
+              <span class="home-showcase__tag"><i class="fas fa-box-open" aria-hidden="true"></i> Sprzedaż</span>
+              <h3>Zamówienia, płatności i statusy w jednym miejscu</h3>
+              <p>
+                BLIK, przelew, PayU — kreator płatności w panelu. Filtruj zamówienia, eksportuj CSV,
+                śledź magazyn i reaguj na nowe sprzedaże bez przełączania się między narzędziami.
+              </p>
+              <ul class="home-showcase__list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Statusy i filtry zamówień</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> BLIK, przelew, PayU w panelu</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Eksport i historia klienta</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="home-showcase__footer">
+          <div class="home-showcase__footer-copy">
+            <img src="assets/amiqplace-icon.png" alt="" width="28" height="28" class="home-showcase__footer-icon" decoding="async">
+            <div>
+              <p class="home-showcase__footer-title">Gotowy na pierwszy produkt?</p>
+              <p>Pełny panel od logowania — <strong>14 dni trial</strong> bez karty. Anulujesz jednym kliknięciem.</p>
+            </div>
+          </div>
+          <div class="home-showcase__footer-actions">
+            <a href="Register.html" class="home-showcase__cta">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              Wypróbuj panel za darmo
+            </a>
+            <a href="sklep-podglad.html" class="home-showcase__cta home-showcase__cta--ghost">Zobacz demo sklepu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Własna domena — plan Pro Seller -->
+    <section class="home-domain" id="domena-wlasna" aria-labelledby="home-domain-heading">
+      <div class="home-domain__glow home-domain__glow--a" aria-hidden="true"></div>
+      <div class="home-domain__glow home-domain__glow--b" aria-hidden="true"></div>
+      <div class="container home-domain__grid">
+        <div class="home-domain__copy">
+          <span class="section-badge">Pro Seller+</span>
+          <h2 id="home-domain-heading">
+            Własna domena<br>
+            <span class="gradient-text">sklep.twojafirma.pl</span>
+          </h2>
+          <p>
+            Od planu <strong>Pro Seller</strong> podłączysz własny adres z automatycznym SSL.
+            Panel generuje rekordy DNS, prowadzi weryfikację i zostawia alias AmiQPlace jako backup.
+          </p>
+          <ul class="home-domain__features">
+            <li><i class="fas fa-server" aria-hidden="true"></i> Tabela CNAME / A / TXT gotowa do skopiowania</li>
+            <li><i class="fas fa-lock" aria-hidden="true"></i> Certyfikat SSL i odnowienia (w produkcji)</li>
+            <li><i class="fas fa-link" aria-hidden="true"></i> slug.amiqplace.pl działa równolegle</li>
+          </ul>
+          <div class="home-domain__actions">
+            <a href="Register.html" class="btn-primary home-domain__cta">Wypróbuj 14 dni za darmo</a>
+            <a href="#plans" class="btn-secondary">Zobacz plan Pro Seller</a>
+          </div>
+        </div>
+
+        <div class="home-domain__visual">
+          <div class="home-domain__card">
+            <div class="home-domain__card-head">
+              <strong><i class="fas fa-globe" aria-hidden="true"></i> Konfigurator domeny</strong>
+              <span class="home-domain__badge">Pro Seller</span>
+            </div>
+            <p class="home-domain__card-sub">sklep.twojafirma.pl · oczekuje DNS</p>
+            <div class="home-domain__dns">
+              <div class="home-domain__dns-row"><span>CNAME</span><code>www → moda-lookbook.amiqplace.pl</code></div>
+              <div class="home-domain__dns-row"><span>A</span><code>@ → 185.199.108.153</code></div>
+              <div class="home-domain__dns-row"><span>TXT</span><code>_amiqplace-verification</code></div>
+            </div>
+            <div class="home-domain__steps" aria-hidden="true">
+              <span class="is-done"><i class="fas fa-check"></i> Domena</span>
+              <span class="is-active"><i class="fas fa-server"></i> DNS</span>
+              <span><i class="fas fa-lock"></i> SSL</span>
+              <span><i class="fas fa-circle-check"></i> Live</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kroki korzystania z platformy (link z hero: #how-it-works) -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+
+        <div class="section-head">
+          <span class="section-badge">Jak to działa</span>
+          <h2>
+            Sprzedaż online<br>
+            <span class="gradient-text">bez komplikacji</span>
+          </h2>
+          <p>
+            Cztery proste kroki od rejestracji do pierwszej sprzedaży — z pełnym panelem na 14 dni
+            i możliwością zmiany planu w dowolnym momencie.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+
+          <div class="step-card">
+            <span class="step-card__num" aria-hidden="true">01</span>
+            <div class="step-card__icon" aria-hidden="true"><i class="fas fa-gift"></i></div>
+            <h3>Załóż konto i wypróbuj za darmo</h3>
+            <p>
+              Rejestracja zajmuje tylko kilka minut, a od razu otrzymujesz dostęp do pełnej platformy na 14 dni za darmo. Możesz testować funkcje, dodawać produkty i przygotować sklep do sprzedaży — bez żadnych zobowiązań.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-card__num" aria-hidden="true">02</span>
+            <div class="step-card__icon" aria-hidden="true"><i class="fas fa-store"></i></div>
+            <h3>Stwórz swój sklep online</h3>
+            <p>
+              Dodawaj produkty, ustawiaj ceny i personalizuj wygląd swojego sklepu, aby odzwierciedlał charakter Twojej marki. Dzięki prostemu kreatorowi każdy krok jest intuicyjny – nawet jeśli zaczynasz swoją przygodę ze sprzedażą online.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-card__num" aria-hidden="true">03</span>
+            <div class="step-card__icon" aria-hidden="true"><i class="fas fa-box-open"></i></div>
+            <h3>Sprzedawaj i zarządzaj zamówieniami</h3>
+            <p>
+              Twoje produkty są gotowe do sprzedaży od razu po publikacji. Zarządzaj zamówieniami, śledź stan magazynu i kontroluj sprzedaż w jednym miejscu, dzięki przejrzystemu i łatwemu w obsłudze panelowi.
+            </p>
+          </div>
+
+          <div class="step-card last-card">
+            <span class="step-card__num" aria-hidden="true">04</span>
+            <div class="step-card__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+            <h3>Rozwijaj swój biznes</h3>
+            <p>
+              Twój sklep może rosnąć razem z Twoim biznesem. Dodawaj kolejne produkty, wprowadzaj promocje i rozwijaj sprzedaż online w tempie, które Ci odpowiada, korzystając z prostych i wygodnych narzędzi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Moduły panelu — skrót -->
+    <section class="home-modules" id="panel-sterowania" aria-labelledby="home-modules-heading">
+      <div class="home-modules__ambient" aria-hidden="true">
+        <div class="home-modules__orb home-modules__orb--a"></div>
+        <div class="home-modules__orb home-modules__orb--b"></div>
+      </div>
+
+      <div class="container">
+        <header class="section-head home-modules__intro">
+          <span class="section-badge">Panel centralny</span>
+          <h2 id="home-modules-heading">
+            Jeden panel. Cała sprzedaż<br>
+            <span class="gradient-text">pod ręką — bez chaosu narzędzi.</span>
+          </h2>
+          <p>
+            AmiQPlace zbiera katalog, zamówienia, płatności, klientów i domenę w jednym miejscu.
+            Logujesz się raz — reszta to przejrzyste moduły zamiast pięciu osobnych usług.
+          </p>
+        </header>
+
+        <ul class="home-modules__highlights" aria-label="Cechy panelu">
+          <li><i class="fas fa-layer-group" aria-hidden="true"></i> Moduły jak w panelu admina</li>
+          <li><i class="fas fa-cloud" aria-hidden="true"></i> Hosting i SSL w cenie planu</li>
+          <li><i class="fas fa-mobile-screen" aria-hidden="true"></i> Panel na telefonie i laptopie</li>
+        </ul>
+
+        <div class="home-modules__layout">
+          <article class="home-modules__visual" aria-labelledby="home-modules-visual-heading">
+            <div class="home-shot home-modules__shot">
+              <div class="home-shot__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="home-shot__url">panel.amiqplace.pl · Pulpit</span>
+              </div>
+              <div class="home-mock home-mock--dashboard home-mock--compact" role="img" aria-label="Podgląd pulpitu z KPI i checklistą publikacji">
+                <aside class="home-mock__sidebar">
+                  <span class="home-mock__logo"></span>
+                  <span class="home-mock__nav is-active"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                  <span class="home-mock__nav"></span>
+                </aside>
+                <div class="home-mock__main">
+                  <div class="home-mock__topbar">
+                    <span></span><span></span>
+                  </div>
+                  <div class="home-mock__kpis">
+                    <div class="home-mock__kpi"><em>3 120 zł</em><i>Sprzedaż dziś</i></div>
+                    <div class="home-mock__kpi"><em>156</em><i>Odwiedziny</i></div>
+                    <div class="home-mock__kpi"><em>31</em><i>Produkty</i></div>
+                    <div class="home-mock__kpi home-mock__kpi--live"><em>Live</em><i>Sklep online</i></div>
+                  </div>
+                  <div class="home-mock__split">
+                    <div class="home-mock__chart">
+                      <span class="home-mock__chart-bar" style="--h:48%"></span>
+                      <span class="home-mock__chart-bar" style="--h:72%"></span>
+                      <span class="home-mock__chart-bar" style="--h:58%"></span>
+                      <span class="home-mock__chart-bar" style="--h:88%"></span>
+                      <span class="home-mock__chart-bar" style="--h:64%"></span>
+                      <span class="home-mock__chart-bar" style="--h:79%"></span>
+                    </div>
+                    <div class="home-mock__checklist">
+                      <p>Droga do publikacji</p>
+                      <span class="is-done"><i></i> Szablon sklepu</span>
+                      <span class="is-done"><i></i> Baner i logo</span>
+                      <span class="is-active"><i></i> Płatności BLIK</span>
+                      <span><i></i> Pierwsze zamówienie</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="home-shot__badge home-shot__badge--tl"><i class="fas fa-gauge-high" aria-hidden="true"></i> Pulpit na żywo</span>
+            </div>
+
+            <div class="home-modules__visual-copy">
+              <span class="home-modules__visual-tag"><i class="fas fa-gauge-high" aria-hidden="true"></i> Pulpit</span>
+              <h3 id="home-modules-visual-heading">Widzisz biznes, zanim otworzysz arkusz</h3>
+              <p>
+                KPI dnia, status sklepu i checklista publikacji — w jednym widoku.
+                Wiesz, co jeszcze domknąć, zanim klient trafi na niedokończoną ofertę.
+              </p>
+              <ul class="home-modules__visual-list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Sprzedaż, ruch i magazyn na start</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Podgląd sklepu w tej samej sesji</li>
+              </ul>
+            </div>
+          </article>
+
+          <div class="home-modules__grid">
+            <article class="home-modules__item home-modules__item--accent-blue">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-box-open"></i></span>
+                <span class="home-modules__item-tag">Katalog</span>
+              </div>
+              <h3>Produkty</h3>
+              <p>Warianty, galeria zdjęć i kategorie branżowe — dodajesz ofertę bez przełączania kart.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-violet">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-cart-shopping"></i></span>
+                <span class="home-modules__item-tag">Operacje</span>
+              </div>
+              <h3>Zamówienia</h3>
+              <p>Statusy, filtry, faktury i eksport CSV — obsługujesz sprzedaż bez arkuszy po stronie.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-cyan">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-wallet"></i></span>
+                <span class="home-modules__item-tag">Finanse</span>
+              </div>
+              <h3>Portfel</h3>
+              <p>Saldo, historia wypłat i Stripe Connect — widzisz, ile realnie zostaje w biznesie.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-green">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-credit-card"></i></span>
+                <span class="home-modules__item-tag">Checkout</span>
+              </div>
+              <h3>Płatności</h3>
+              <p>BLIK, przelewy i PayU — włączasz metody w kreatorze, bez integracji na własną rękę.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-pink">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-users"></i></span>
+                <span class="home-modules__item-tag">Relacje</span>
+              </div>
+              <h3>Klienci</h3>
+              <p>Profile, historia zakupów i kontakt — masz kontekst rozmowy, zanim odpiszesz na maila.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-amber">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-globe"></i></span>
+                <span class="home-modules__item-tag">Marka</span>
+              </div>
+              <h3>Domena</h3>
+              <p>Własny adres .pl od planu Pro Seller — sklep wygląda jak Twoja marka, nie subdomena.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--accent-indigo">
+              <div class="home-modules__item-head">
+                <span class="home-modules__item-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span>
+                <span class="home-modules__item-tag">Analityka</span>
+              </div>
+              <h3>Statystyki</h3>
+              <p>Sprzedaż, ruch i konwersje w panelu — bez dokładania osobnego narzędzia analitycznego.</p>
+            </article>
+
+            <article class="home-modules__item home-modules__item--cta">
+              <span class="home-modules__item-icon home-modules__item-icon--cta" aria-hidden="true"><i class="fas fa-rocket"></i></span>
+              <h3>Panel od pierwszego logowania</h3>
+              <p>14 dni trial bez karty — wchodzisz i od razu testujesz moduły na swoim sklepie.</p>
+              <a href="Register.html" class="home-modules__item-link">Załóż konto za darmo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </article>
+          </div>
+        </div>
+
+        <footer class="home-modules__foot">
+          <div class="home-modules__foot-copy">
+            <p class="home-modules__foot-title">Chcesz zobaczyć panel w ruchu?</p>
+            <p class="home-modules__foot-sub">Niżej pokazujemy edytor, płatności i domenę krok po kroku — tak jak w produkcji.</p>
+          </div>
+          <div class="home-modules__foot-actions">
+            <a href="#zobacz-panel" class="home-modules__cta">
+              <i class="fas fa-play" aria-hidden="true"></i>
+              Zobacz moduły w akcji
+            </a>
+            <a href="plany.html" class="home-modules__cta home-modules__cta--ghost">Porównaj plany</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Zachęta do startu — sprzedaż + panel -->
+    <section class="home-launch" id="start-z-amiq" aria-labelledby="home-launch-heading">
+      <div class="home-launch__glow" aria-hidden="true"></div>
+      <div class="container home-launch__inner">
+        <div class="home-launch__content">
+          <ul class="home-launch__chips" aria-label="Korzyści">
+            <li><i class="fas fa-cloud" aria-hidden="true"></i> Hosting w cenie</li>
+            <li><i class="fas fa-lock" aria-hidden="true"></i> SSL i kopie</li>
+            <li><i class="fas fa-clock" aria-hidden="true"></i> Start w minuty</li>
+          </ul>
+          <h2 id="home-launch-heading">
+            Otwórz panel i <span class="gradient-text">wystaw pierwszy produkt.</span>
+          </h2>
+          <p>
+            Zalogujesz się, wybierzesz szablon, dodasz ofertę i od razu zobaczysz sklep tak,
+            jak zobaczą go klienci — w tej samej przeglądarce, bez kolejnych narzędzi.
+          </p>
+        </div>
+        <div class="home-launch__actions">
+          <a href="Register.html" class="home-launch__btn home-launch__btn--primary">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            Załóż konto za darmo
+          </a>
+          <a href="#plans" class="home-launch__btn home-launch__btn--ghost">Porównaj plany</a>
+          <p class="home-launch__hint">14 dni trial · bez karty · pełny panel od pierwszego logowania</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__shell container">
+      <section class="footer-promo" aria-label="Rejestracja">
+        <div class="footer-promo__copy">
+          <span class="footer-promo__badge">14 dni za darmo</span>
+          <p class="footer-promo__title">Uruchom sklep bez karty i bez ryzyka</p>
+          <p class="footer-promo__sub">Wybierz plan później — anulujesz jednym kliknięciem w panelu.</p>
+        </div>
+        <div class="footer-promo__actions">
+          <a href="Register.html" class="footer-promo__btn footer-promo__btn--primary">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            Załóż konto
+          </a>
+          <a href="#plans" class="footer-promo__btn footer-promo__btn--ghost">Plany</a>
+        </div>
+      </section>
+
+      <div class="footer-grid">
+        <div class="footer-col footer-col--brand">
+          <div class="footer-brand-mark">
+            <img src="assets/amiqplace-icon.png" alt="" width="32" height="32" class="footer-brand-mark__icon" decoding="async">
+            <h3 class="logo-gradient">AmiQPlace</h3>
+          </div>
+          <p>
+            Nowoczesna platforma e-commerce: własny sklep, sprzedaż online i własna domena
+            — bez zbędnej technologii po Twojej stronie.
+          </p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platforma</h4>
+          <ul>
+            <li><a href="#zobacz-panel">Zobacz panel</a></li>
+            <li><a href="#domena-wlasna">Własna domena</a></li>
+            <li><a href="#how-it-works">Jak działa</a></li>
+            <li><a href="Register.html">Załóż sklep</a></li>
+            <li><a href="#plans">Plany</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="o-nas.html">O nas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Wsparcie</h4>
+          <ul>
+            <li><a href="faq.html">Centrum pomocy</a></li>
+            <li><a href="faq.html">Najczęstsze pytania</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="Login.html">Logowanie</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Prawne</h4>
+          <ul>
+            <li><a href="regulamin.html">Regulamin</a></li>
+            <li><a href="regulamin.html">Polityka prywatności</a></li>
+            <li><a href="regulamin.html">Cookies</a></li>
+            <li><a href="regulamin.html">RODO</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-bottom__copy">© 2026 AmiQPlace. Wszelkie prawa zastrzeżone.</span>
+        <div class="footer-bottom__meta">
+          <a href="regulamin.html">Regulamin</a>
+          <span class="footer-bottom__dot" aria-hidden="true"></span>
+          <a href="regulamin.html">Prywatność</a>
+          <span class="footer-bottom__dot" aria-hidden="true"></span>
+          <span class="gradient-accent">E-commerce przyszłości</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var section = document.querySelector(".problems");
+      if (!section) return;
+      var grid = section.querySelector("[data-problems-grid]");
+      var btn = section.querySelector("[data-problems-toggle]");
+      if (!grid || !btn) return;
+
+      var moreHtml =
+        "Pokaż więcej <i class=\"fas fa-chevron-down\" aria-hidden=\"true\"></i>";
+      var lessHtml =
+        "Pokaż mniej <i class=\"fas fa-chevron-down\" aria-hidden=\"true\"></i>";
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var revealDuration = reduceMotion ? 0 : 420;
+      var collapseDuration = reduceMotion ? 0 : 360;
+      var staggerStep = reduceMotion ? 0 : 45;
+      var collapsing = false;
+
+      function getExtraCards() {
+        return Array.prototype.slice.call(
+          grid.querySelectorAll(".problems__card:nth-child(n+4)")
+        );
+      }
+
+      function clearCardMotion(cards) {
+        cards.forEach(function (card) {
+          card.style.animationDelay = "";
+        });
+      }
+
+      function setExpanded(open) {
+        btn.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.innerHTML = open ? lessHtml : moreHtml;
+      }
+
+      function restoreScrollAnchor(anchorY) {
+        var delta = btn.getBoundingClientRect().top - anchorY;
+        if (Math.abs(delta) < 2) return;
+        window.scrollTo({
+          top: window.scrollY + delta,
+          behavior: "auto",
+        });
+      }
+
+      btn.addEventListener("click", function () {
+        if (collapsing) return;
+
+        var isOpen = grid.classList.contains("is-expanded");
+        var extraCards = getExtraCards();
+
+        if (!isOpen) {
+          grid.classList.remove("is-collapsing");
+          grid.classList.add("is-expanded");
+          setExpanded(true);
+
+          if (!reduceMotion) {
+            extraCards.forEach(function (card, index) {
+              card.style.animationDelay = index * 0.05 + "s";
+            });
+            window.setTimeout(function () {
+              clearCardMotion(extraCards);
+            }, revealDuration + extraCards.length * 50);
+          }
+          return;
+        }
+
+        var anchorY = btn.getBoundingClientRect().top;
+
+        collapsing = true;
+        btn.disabled = true;
+        grid.classList.add("is-collapsing");
+
+        if (!reduceMotion) {
+          extraCards
+            .slice()
+            .reverse()
+            .forEach(function (card, index) {
+              card.style.animationDelay = index * (staggerStep / 1000) + "s";
+            });
+        }
+
+        var collapseWait =
+          collapseDuration + (extraCards.length - 1) * staggerStep;
+
+        window.setTimeout(function () {
+          grid.classList.remove("is-expanded", "is-collapsing");
+          clearCardMotion(extraCards);
+          setExpanded(false);
+          btn.disabled = false;
+          collapsing = false;
+          restoreScrollAnchor(anchorY);
+        }, collapseWait);
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var toggle = document.getElementById("menu-toggle");
+      var menu = document.getElementById("mobile-menu-drawer");
+      var overlay = document.getElementById("mobile-overlay");
+      if (!toggle || !menu || !overlay) return;
+
+      var closeBtn = menu.querySelector(".close-menu");
+
+      function setOpen(open) {
+        menu.classList.toggle("active", open);
+        overlay.classList.toggle("active", open);
+        toggle.classList.toggle("is-open", open);
+        document.body.classList.toggle("mobile-nav-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        menu.setAttribute("aria-hidden", open ? "false" : "true");
+        overlay.setAttribute("aria-hidden", open ? "false" : "true");
+        document.body.style.overflow = open ? "hidden" : "";
+        if ("inert" in menu) {
+          menu.inert = !open;
+        }
+        if (open) {
+          var first = menu.querySelector("a, button");
+          if (first) {
+            try {
+              first.focus();
+            } catch (e) {}
+          }
+        } else if (document.activeElement && menu.contains(document.activeElement)) {
+          try {
+            toggle.focus();
+          } catch (e) {}
+        }
+      }
+
+      function closeMenu() {
+        setOpen(false);
+      }
+
+      function openMenu() {
+        setOpen(true);
+      }
+
+      function isMobileNav() {
+        return window.matchMedia("(max-width: 900px)").matches;
+      }
+
+      function closeIfDesktop() {
+        if (!isMobileNav()) {
+          closeMenu();
+        }
+      }
+
+      closeMenu();
+      window.addEventListener("resize", closeIfDesktop);
+
+      toggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (menu.classList.contains("active")) closeMenu();
+        else openMenu();
+      });
+
+      overlay.addEventListener("click", function (e) {
+        e.preventDefault();
+        closeMenu();
+      });
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+        });
+      }
+
+      menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          closeMenu();
+        });
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && isMobileNav() && menu.classList.contains("active")) {
+          closeMenu();
+          try {
+            toggle.focus();
+          } catch (err) {}
+        }
+      });
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="supabase-auth.js"></script>
+  <script src="account.js" defer></script>
+</body>
+</html>

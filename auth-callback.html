@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Logowanie — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-callback">
+    <div class="auth-card" style="max-width: 28rem; margin: 4rem auto; padding: 2rem; text-align: center;">
+      <p class="auth-banner auth-banner--info" id="auth-callback-status">Potwierdzamy konto…</p>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="supabase-auth.js"></script>
+  <script>
+    (function () {
+      var status = document.getElementById("auth-callback-status");
+      function fail(msg) {
+        if (status) {
+          status.className = "auth-banner auth-banner--error";
+          status.textContent = msg;
+        }
+      }
+      if (!window.AmiQAuth || !window.AmiQAuth.isLive()) {
+        fail("Logowanie nie jest skonfigurowane. Uzupełnij auth-config.js.");
+        return;
+      }
+      window.AmiQAuth.handleAuthCallback().then(function (result) {
+        if (result.ok) {
+          window.location.replace("konto-start.html");
+          return;
+        }
+        fail("Nie udało się potwierdzić konta. Spróbuj zalogować się ponownie.");
+        setTimeout(function () {
+          window.location.replace("Login.html");
+        }, 3200);
+      });
+    })();
+  </script>
+</body>
+</html>

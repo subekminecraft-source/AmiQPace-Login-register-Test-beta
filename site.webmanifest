@@ -1,0 +1,24 @@
+{
+  "name": "AmiQPlace",
+  "short_name": "AmiQPlace",
+  "description": "Nowoczesna platforma e-commerce — własny sklep online w kilka minut.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "pl",
+  "icons": [
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

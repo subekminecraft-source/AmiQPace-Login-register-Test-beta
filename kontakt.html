@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kontakt — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Skontaktuj się z zespołem AmiQPlace w sprawie platformy e-commerce, planów, wdrożenia lub pomocy technicznej.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Podstrony.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage-body">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="AmiQPlace — strona główna">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+      <nav class="nav" aria-label="Menu główne">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+      <a href="Login.html" class="login">Zaloguj się</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Otwórz lub zamknij menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
+        <span class="menu-toggle__icon" aria-hidden="true"><span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu-drawer" role="dialog" aria-modal="true" aria-label="Menu nawigacji mobilnej" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu-header">
+        <img class="logo__img logo__img--drawer" src="assets/amiqplace-logo.png" alt="" width="200" height="34" decoding="async">
+        <button type="button" class="close-menu" aria-label="Zamknij menu"><span class="close-menu__icon" aria-hidden="true"></span></button>
+      </div>
+      <nav class="mobile-nav" aria-label="Nawigacja główna (mobile)">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="plany.html">Plany</a>
+        <a href="regulamin.html">Regulamin</a>
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+      <div class="mobile-menu__divider" aria-hidden="true"></div>
+      <div class="mobile-auth">
+        <a href="Register.html" class="mobile-btn mobile-btn--primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Utwórz konto</a>
+        <a href="Login.html" class="mobile-btn mobile-btn--secondary"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Zaloguj się</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+  <main class="subpage-main">
+    <section class="subpage-hero">
+      <div class="container subpage-hero__inner">
+        <div>
+          <p class="subpage-eyebrow"><i class="fas fa-message" aria-hidden="true"></i> Kontakt</p>
+          <h1 class="subpage-title">Porozmawiajmy o Twoim <span class="gradient-text">sklepie online.</span></h1>
+          <p class="subpage-lead">Masz pytanie o plany, funkcje, wdrożenie lub start sprzedaży? Ta strona jest przykładową bazą kontaktu — możesz później podpiąć realny backend, e-mail lub CRM.</p>
+        </div>
+        <aside class="subpage-hero-card">
+          <div class="subpage-hero-card__top">
+            <span class="subpage-hero-card__icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
+            <span class="subpage-stat"><strong>1 dzień</strong><span>roboczy</span></span>
+          </div>
+          <h2>Szybka odpowiedź</h2>
+          <p>Przykładowy czas odpowiedzi: do jednego dnia roboczego. Dla klientów płatnych można później dodać priorytet SLA.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="subpage-section subpage-section--compact">
+      <div class="container contact-layout">
+        <aside class="subpage-panel">
+          <h2>Dane kontaktowe</h2>
+          <ul class="subpage-list">
+            <li><i class="fas fa-envelope" aria-hidden="true"></i> kontakt@amiqplace.pl</li>
+            <li><i class="fas fa-phone" aria-hidden="true"></i> +48 000 000 000</li>
+            <li><i class="fas fa-location-dot" aria-hidden="true"></i> Polska, obsługa online</li>
+            <li><i class="fas fa-clock" aria-hidden="true"></i> Poniedziałek - piątek, 9:00 - 17:00</li>
+          </ul>
+          <p class="subpage-footer-note">Dane są przykładowe. W produkcji wpisz realny e-mail, telefon, adres firmy i linki do social media.</p>
+        </aside>
+
+        <section class="subpage-panel" aria-labelledby="contact-form-heading">
+          <h2 id="contact-form-heading">Napisz wiadomość</h2>
+          <form class="contact-form" action="mailto:kontakt@amiqplace.pl" method="post" enctype="text/plain">
+            <div class="contact-field">
+              <label for="contact-name">Imię i nazwisko</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Jan Kowalski" required>
+            </div>
+            <div class="contact-field">
+              <label for="contact-email">E-mail</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="jan@firma.pl" required>
+            </div>
+            <div class="contact-field">
+              <label for="contact-topic">Temat</label>
+              <select id="contact-topic" name="topic" required>
+                <option value="">Wybierz temat</option>
+                <option>Start sklepu</option>
+                <option>Plany i płatności</option>
+                <option>Pomoc techniczna</option>
+                <option>Współpraca</option>
+              </select>
+            </div>
+            <div class="contact-field">
+              <label for="contact-message">Wiadomość</label>
+              <textarea id="contact-message" name="message" placeholder="Napisz, w czym możemy pomóc..." required></textarea>
+            </div>
+            <button type="submit" class="subpage-button"><i class="fas fa-paper-plane" aria-hidden="true"></i> Wyślij wiadomość</button>
+          </form>
+          <p class="subpage-footer-note">Formularz korzysta teraz z `mailto:`. Produkcyjnie najlepiej podpiąć go do API lub usługi formularzy.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="auth-footer-min">
+    <div class="auth-footer-min__inner">
+      <span>© 2026 AmiQPlace</span>
+      <div class="auth-footer-min__links">
+        <a href="o-nas.html">O nas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="regulamin.html">Regulamin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Podgląd sklepu — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Pełny podgląd sklepu AmiQPlace przed publikacją.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="AmiQPlace - Storefront.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Playfair+Display:wght@700&family=DM+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="preview-page account-start-page">
+  <script src="session-bridge.js"></script>
+  <header class="preview-page__bar">
+    <div class="preview-page__brand">
+      <a href="panel.html" class="preview-page__back" data-go-panel aria-label="Wróć do panelu"><i class="fas fa-arrow-left" aria-hidden="true"></i></a>
+      <a href="panel.html" class="logo preview-page__logo" data-go-panel aria-label="AmiQPlace — panel">
+        <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+      </a>
+      <div class="preview-page__meta">
+        <strong data-preview-page-title>Podgląd sklepu</strong>
+        <span data-preview-page-url>sklep.amiqplace.pl</span>
+      </div>
+    </div>
+    <div class="preview-page__actions" data-preview-page-actions hidden>
+      <div class="preview-page__device" role="tablist" aria-label="Tryb podglądu">
+        <button type="button" class="is-active" data-preview-page-device="desktop"><i class="fas fa-desktop" aria-hidden="true"></i> Desktop</button>
+        <button type="button" data-preview-page-device="mobile"><i class="fas fa-mobile-screen" aria-hidden="true"></i> Mobile</button>
+      </div>
+      <button type="button" class="preview-page__btn" data-preview-refresh><i class="fas fa-rotate-right" aria-hidden="true"></i> Odśwież</button>
+      <button type="button" class="preview-page__btn preview-page__btn--live" data-preview-copy-link hidden><i class="fas fa-copy" aria-hidden="true"></i> Kopiuj link</button>
+      <a href="panel.html" class="preview-page__btn preview-page__btn--primary" data-go-panel data-go-panel-view="editor"><i class="fas fa-pen" aria-hidden="true"></i> Edytuj sklep</a>
+    </div>
+  </header>
+
+  <main class="preview-page__main" data-preview-page-main>
+    <div class="preview-page__state preview-page__state--loading" data-preview-loading>
+      <div class="preview-page__spinner" aria-hidden="true"></div>
+      <strong>Ładowanie podglądu…</strong>
+    </div>
+
+    <div class="preview-page__state preview-page__blocked" data-preview-blocked hidden>
+      <div class="preview-page__state-icon" aria-hidden="true"><i class="fas fa-triangle-exclamation"></i></div>
+      <strong>Podgląd niedostępny</strong>
+      <p>Odśwież stronę lub wróć do panelu i otwórz podgląd ponownie.</p>
+      <a href="panel.html" class="preview-page__btn preview-page__btn--primary" data-go-panel>Wróć do panelu</a>
+    </div>
+
+    <div class="preview-page__state preview-page__empty" data-preview-empty hidden>
+      <div class="preview-page__state-icon" aria-hidden="true"><i class="fas fa-store"></i></div>
+      <strong>Brak projektu do podglądu</strong>
+      <p>Stwórz sklep w panelu AmiQPlace, a potem kliknij „Pełny podgląd” ponownie.</p>
+      <a href="panel.html" class="preview-page__btn preview-page__btn--primary" data-go-panel>Przejdź do panelu</a>
+    </div>
+
+    <div class="preview-page__state preview-page__error" data-preview-error hidden>
+      <div class="preview-page__state-icon" aria-hidden="true"><i class="fas fa-triangle-exclamation"></i></div>
+      <strong>Nie udało się wczytać podglądu</strong>
+      <p data-preview-error-text>Odśwież stronę lub wróć do panelu i spróbuj ponownie.</p>
+      <button type="button" class="preview-page__btn" data-preview-refresh>Odśwież</button>
+    </div>
+
+    <div class="preview-page__canvas" data-preview-frame-wrap hidden>
+      <div class="preview-page__browser">
+        <div class="preview-page__browser-bar">
+          <span></span><span></span><span></span>
+          <div class="preview-page__browser-url" data-preview-browser-url>sklep.amiqplace.pl</div>
+        </div>
+        <div class="preview-page__frame" data-preview-frame></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="storefront.js"></script>
+  <script src="sklep-podglad.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel sklepu — AmiQPlace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Panel sterowania sklepem AmiQPlace po aktywacji triala.">
+  <link rel="stylesheet" href="AmiQPlace - Strona Główna.css">
+  <link rel="stylesheet" href="AmiQPlace - Konto.css">
+  <link rel="stylesheet" href="AmiQPlace - Panel.css">
+  <link rel="stylesheet" href="AmiQPlace - Storefront.css">
+  <link rel="stylesheet" href="plugins/dropship-ai/frontend/dropship-ai.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Playfair+Display:wght@700&family=DM+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="panel-page account-start-page">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="supabase-auth.js"></script>
+  <script src="session-bridge.js"></script>
+  <div class="panel-shell">
+    <aside class="panel-sidebar" aria-label="Panel boczny">
+      <div class="panel-sidebar__brand">
+        <a href="#" class="logo" data-account-logo aria-label="AmiQPlace — panel">
+          <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+        </a>
+        <span class="panel-sidebar__status" data-plan-chip><i class="fas fa-circle" aria-hidden="true"></i> Trial</span>
+      </div>
+
+      <nav aria-label="Nawigacja panelu">
+        <p class="panel-nav__category">Główne</p>
+        <ul class="panel-nav">
+          <li><a href="#" class="is-active" data-panel-nav="dashboard"><i class="fas fa-gauge-high" aria-hidden="true"></i> Pulpit</a></li>
+          <li><a href="#" data-panel-nav="editor"><i class="fas fa-pen-to-square" aria-hidden="true"></i> Sklep</a></li>
+          <li><a href="#" data-panel-nav="theme"><i class="fas fa-palette" aria-hidden="true"></i> Motyw sklepu</a></li>
+          <li><a href="#" data-panel-nav="products"><i class="fas fa-box" aria-hidden="true"></i> Produkty</a></li>
+          <li><a href="#" data-panel-nav="orders"><i class="fas fa-cart-shopping" aria-hidden="true"></i> Zamówienia</a></li>
+          <li><a href="#" data-panel-nav="customers"><i class="fas fa-users" aria-hidden="true"></i> Klienci</a></li>
+          <li><a href="#" data-panel-nav="analytics"><i class="fas fa-chart-line" aria-hidden="true"></i> Analityka</a></li>
+          <li><a href="#" data-panel-nav="checkout"><i class="fas fa-credit-card" aria-hidden="true"></i> Płatności i dostawy</a></li>
+          <li><a href="#" data-panel-nav="settings"><i class="fas fa-gear" aria-hidden="true"></i> Ustawienia</a></li>
+        </ul>
+        <p class="panel-nav__category">Finanse</p>
+        <ul class="panel-nav panel-nav--finance">
+          <li><a href="#" data-panel-nav="wallet"><i class="fas fa-wallet" aria-hidden="true"></i> Portfel i wypłaty <span class="panel-nav__badge" data-wallet-nav-balance hidden></span></a></li>
+        </ul>
+        <p class="panel-nav__category">Usługi</p>
+        <ul class="panel-nav panel-nav--services">
+          <li><a href="#" data-panel-nav="plugins"><i class="fas fa-puzzle-piece" aria-hidden="true"></i> Wtyczki</a></li>
+          <li><a href="#" data-panel-soon><i class="fas fa-handshake" aria-hidden="true"></i> Współpraca B2B</a></li>
+        </ul>
+        <p class="panel-nav__category">Społeczność</p>
+        <ul class="panel-nav panel-nav--community">
+          <li><a href="#" data-panel-nav="community"><i class="fas fa-store" aria-hidden="true"></i> Rynek <span class="panel-nav__soon">Wkrótce</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="panel-sidebar__card" data-active-project-card hidden>
+        <strong data-active-project-name>Aktywny projekt</strong>
+        <p data-active-project-meta>Edytujesz teraz ten sklep.</p>
+        <button type="button" class="panel-sidebar__button panel-sidebar__button--btn" data-open-projects-modal>Przełącz projekt <i class="fas fa-shuffle" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="panel-sidebar__card">
+        <strong>Trial: 14 dni</strong>
+        <p>Przygotuj sklep, dodaj produkty i sprawdź wygląd przed wyborem planu.</p>
+        <a href="plany.html" class="panel-sidebar__button">Zobacz plany <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </aside>
+
+    <div class="panel-main">
+      <header class="panel-topbar">
+        <a href="#" class="logo panel-topbar__mobile-brand" data-account-logo aria-label="AmiQPlace — panel">
+          <img class="logo__img" src="assets/amiqplace-logo.png" alt="" width="236" height="40" decoding="async">
+        </a>
+
+        <div class="panel-search-wrap" data-panel-search-wrap>
+          <label class="panel-search" aria-label="Szukaj w panelu">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" placeholder="Szukaj produktów, zamówień, klientów..." data-panel-search autocomplete="off">
+          </label>
+          <div class="panel-search-dropdown" data-panel-search-results hidden></div>
+        </div>
+
+        <div class="panel-topbar__actions">
+          <button type="button" class="panel-project-chip" data-open-projects-modal hidden>
+            <i class="fas fa-folder-open" aria-hidden="true"></i>
+            <span data-topbar-project-name>Projekt</span>
+          </button>
+          <div class="panel-notifications" data-panel-notifications>
+            <button type="button" class="panel-icon-btn panel-notifications__trigger" data-panel-notifications-toggle aria-expanded="false" aria-controls="panel-notifications-dropdown" aria-label="Powiadomienia">
+              <i class="fas fa-bell" aria-hidden="true"></i>
+              <span class="panel-notifications__badge" data-panel-notifications-count hidden>0</span>
+            </button>
+            <div class="panel-notifications__dropdown" id="panel-notifications-dropdown" data-panel-notifications-dropdown hidden>
+              <header class="panel-notifications__head">
+                <strong>Powiadomienia sklepu</strong>
+                <button type="button" class="panel-notifications__mark" data-panel-notifications-read-all>Oznacz jako przeczytane</button>
+              </header>
+              <div class="panel-notifications__list" data-panel-notifications-list></div>
+            </div>
+          </div>
+          <button type="button" class="panel-ghost-btn" data-scroll-preview><i class="fas fa-eye" aria-hidden="true"></i><span>Podgląd</span></button>
+          <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i><span>Stwórz projekt</span></button>
+
+          <button type="button" class="panel-icon-btn panel-mobile-menu-toggle" data-panel-mobile-menu-toggle aria-expanded="false" aria-controls="panel-mobile-menu" aria-label="Otwórz menu panelu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
+          <div class="account-user" data-account-menu>
+            <button type="button" class="account-user__trigger" data-account-trigger aria-label="Otwórz menu konta" aria-expanded="false" aria-controls="account-menu">
+              <i class="far fa-user" aria-hidden="true"></i>
+            </button>
+            <div class="account-user__menu" id="account-menu" data-account-dropdown aria-hidden="true">
+              <div class="account-user__profile">
+                <span class="account-user__avatar"><i class="far fa-user" aria-hidden="true"></i></span>
+                <span>
+                  <span class="account-user__name">Nowe konto</span>
+                  <span class="account-user__status">Trial aktywny</span>
+                </span>
+              </div>
+              <div class="account-user__links">
+                <a href="panel.html"><i class="fas fa-store" aria-hidden="true"></i> Twoje sklepy</a>
+                <a href="#" data-panel-nav="wallet"><i class="fas fa-wallet" aria-hidden="true"></i> Portfel i wypłaty</a>
+                <a href="plany.html"><i class="fas fa-layer-group" aria-hidden="true"></i> Plany</a>
+                <a href="#" data-panel-nav="settings"><i class="fas fa-gear" aria-hidden="true"></i> Ustawienia</a>
+                <a href="faq.html"><i class="fas fa-circle-question" aria-hidden="true"></i> Pomoc</a>
+                <button type="button" class="account-user__danger" data-account-logout><i class="fas fa-right-from-bracket" aria-hidden="true"></i> Wyloguj</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div data-panel-main>
+        <!-- PULPIT -->
+        <div class="panel-view is-active" data-panel-view="dashboard">
+          <section class="panel-hero" aria-labelledby="panel-heading">
+            <div>
+              <span class="panel-eyebrow"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Panel sklepu</span>
+              <h1 id="panel-heading">Zbuduj pierwszy sklep w AmiQPlace.</h1>
+              <p>To roboczy pulpit po aktywacji triala. Możesz tu później podpiąć realne produkty, zamówienia, płatności, motywy i analitykę.</p>
+            </div>
+            <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-rocket" aria-hidden="true"></i><span>Uruchom kreator</span></button>
+          </section>
+
+          <section class="panel-stats" aria-label="Najważniejsze statystyki" data-dashboard-stats>
+            <article class="panel-stat"><span>Sprzedaż dzisiaj</span><strong data-stat-sales>0 zł</strong><small data-stat-sales-hint>Brak zamówień</small></article>
+            <article class="panel-stat"><span>Odwiedziny (7 dni)</span><strong data-stat-visits>0</strong><small data-stat-visits-hint>Symulacja demo</small></article>
+            <article class="panel-stat"><span>Produkty</span><strong data-stat-products>0</strong><small data-stat-products-hint>Dodaj pierwszy</small></article>
+            <article class="panel-stat"><span>Status sklepu</span><strong data-stat-status>Szkic</strong><small data-stat-checklist>0/4 kroków</small></article>
+          </section>
+
+          <div class="panel-grid" style="margin-top:1rem">
+            <div class="panel-stack">
+              <section class="panel-card panel-publish-card" data-dashboard-publish hidden></section>
+
+              <section class="panel-card" data-dashboard-inventory-wrap hidden>
+                <div class="panel-card__head">
+                  <div><h2>Magazyn</h2><p>Produkty wymagające uzupełnienia stanu.</p></div>
+                </div>
+                <div class="panel-card__body" data-dashboard-inventory></div>
+              </section>
+
+              <section class="panel-card">
+                <div class="panel-card__head">
+                  <div><h2>Checklist startowa</h2><p>Najważniejsze kroki do publikacji sklepu.</p></div>
+                  <span class="panel-ghost-btn panel-ghost-btn--static" data-checklist-progress>0/4</span>
+                </div>
+                <div class="panel-card__body panel-setup" data-dashboard-checklist></div>
+              </section>
+
+              <section class="panel-card">
+                <div class="panel-card__head">
+                  <div><h2>Analityka sklepu</h2><p data-analytics-mini-subtitle>Ostatnie 7 dni — dane z zamówień demo.</p></div>
+                  <button type="button" class="panel-ghost-btn" data-panel-nav="analytics"><i class="fas fa-chart-line" aria-hidden="true"></i> Pełny raport</button>
+                </div>
+                <div class="panel-card__body panel-analytics-mini" data-dashboard-analytics>
+                  <div class="panel-analytics-mini__row">
+                    <div class="panel-analytics-mini__metric"><span>Przychód</span><strong data-analytics-mini-revenue>0 zł</strong></div>
+                    <div class="panel-analytics-mini__metric"><span>Zamówienia</span><strong data-analytics-mini-orders>0</strong></div>
+                    <div class="panel-analytics-mini__metric"><span>Śr. koszyk</span><strong data-analytics-mini-aov>0 zł</strong></div>
+                  </div>
+                  <div data-analytics-mini-chart aria-label="Wykres sprzedaży (7 dni)"></div>
+                </div>
+              </section>
+
+              <section class="panel-card">
+                <div class="panel-card__head">
+                  <div><h2>Ostatnie aktywności</h2><p>Działania w aktywnym projekcie.</p></div>
+                </div>
+                <div class="panel-card__body panel-orders" data-activity-feed></div>
+              </section>
+            </div>
+
+            <aside class="panel-stack panel-preview" data-preview-anchor>
+              <section class="panel-card">
+                <div class="panel-card__head">
+                  <div><h2>Podgląd sklepu</h2><p data-preview-subtitle>Sprawdź wygląd sklepu przed publikacją.</p></div>
+                </div>
+                <div class="panel-card__body" data-store-preview-wrap></div>
+              </section>
+
+              <section class="panel-card">
+                <div class="panel-card__head">
+                  <div><h2>Szybkie akcje</h2><p>Najczęściej używane działania w panelu.</p></div>
+                </div>
+                <div class="panel-card__body panel-setup">
+                  <button type="button" class="panel-step" data-panel-nav="products">
+                    <span class="panel-step__icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                    <div><strong>Dodaj produkt</strong><span>Stwórz pierwszą ofertę.</span></div>
+                    <span class="panel-step__status">Otwórz</span>
+                  </button>
+                  <button type="button" class="panel-step" data-panel-nav="theme">
+                    <span class="panel-step__icon"><i class="fas fa-paintbrush" aria-hidden="true"></i></span>
+                    <div><strong>Motyw i baner</strong><span>Kolory, zdjęcie hero i tryb ciemny.</span></div>
+                    <span class="panel-step__status">Otwórz</span>
+                  </button>
+                  <button type="button" class="panel-step" data-open-checkout="payments">
+                    <span class="panel-step__icon"><i class="fas fa-credit-card" aria-hidden="true"></i></span>
+                    <div><strong>Płatności i dostawy</strong><span>Skonfiguruj metody i stawki (demo).</span></div>
+                    <span class="panel-step__status">Kreator</span>
+                  </button>
+                  <a href="plany.html" class="panel-step">
+                    <span class="panel-step__icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+                    <div><strong>Wybierz plan</strong><span>Przejdź z triala na abonament.</span></div>
+                    <span class="panel-step__status">Plany</span>
+                  </a>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+
+        <!-- EDYTOR SKLEPU -->
+        <div class="panel-view" data-panel-view="editor" hidden>
+          <div class="panel-editor" data-editor-root>
+            <div class="panel-editor__empty" data-editor-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-store" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego projektu</h2>
+              <p>Stwórz sklep lub wybierz projekt z listy, aby edytować motyw i ustawienia.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div class="panel-editor__layout" data-editor-layout hidden>
+              <div class="panel-editor__main">
+                <header class="panel-editor__head">
+                  <div>
+                    <span class="panel-eyebrow"><i class="fas fa-pen-to-square" aria-hidden="true"></i> Treść sklepu</span>
+                    <h1 data-editor-title>Nazwa projektu</h1>
+                    <p data-editor-slug>twojsklep.amiqplace.pl</p>
+                  </div>
+                  <div class="panel-editor__head-actions">
+                    <span class="panel-status-pill" data-editor-status>Szkic</span>
+                    <button type="button" class="panel-ghost-btn" data-panel-nav="theme"><i class="fas fa-palette" aria-hidden="true"></i><span>Motyw</span></button>
+                    <button type="button" class="panel-ghost-btn" data-open-full-preview><i class="fas fa-eye" aria-hidden="true"></i><span>Pełny podgląd</span></button>
+                    <button type="button" class="panel-ghost-btn" data-open-publish-modal><i class="fas fa-globe" aria-hidden="true"></i><span>Opublikuj</span></button>
+                  </div>
+                </header>
+
+                <section class="panel-card panel-card--category">
+                  <div class="panel-card__head">
+                    <div>
+                      <h2>Branża sklepu</h2>
+                      <p>Wybierz kategorię — dopasujemy funkcje produktów i checkoutu (jak w Shopify).</p>
+                    </div>
+                  </div>
+                  <div class="panel-card__body" data-store-category-root></div>
+                </section>
+
+                <section class="panel-card panel-card--sections">
+                  <div class="panel-card__head">
+                    <div>
+                      <h2>Sekcje strony głównej</h2>
+                      <p>Globalny panel widoczności — te same ustawienia co przy każdej sekcji poniżej.</p>
+                    </div>
+                  </div>
+                  <div class="panel-card__body" data-sections-toggles></div>
+                </section>
+
+                <section class="panel-card" data-editor-subsection-card="hero">
+                  <div class="panel-card__head">
+                    <div><h2>Identyfikacja i baner</h2><p>Teksty widoczne w nagłówku strony i na banerze głównym.</p></div>
+                    <div class="panel-card__head-tools">
+                      <div class="panel-subsection-visibility-host" data-subsection-visibility="trust"></div>
+                      <div class="panel-subsection-visibility-host" data-subsection-visibility="hero"></div>
+                    </div>
+                  </div>
+                  <div class="panel-card__body">
+                    <div class="panel-form-row">
+                      <label class="panel-field">
+                        <span>Nazwa sklepu (nagłówek)</span>
+                        <input type="text" data-editor-store-name maxlength="40" placeholder="Np. Moda & Lookbook">
+                      </label>
+                      <label class="panel-field">
+                        <span>Tytuł banera</span>
+                        <input type="text" data-editor-hero-title maxlength="60">
+                      </label>
+                      <label class="panel-field">
+                        <span>Podtytuł banera</span>
+                        <input type="text" data-editor-hero-subtitle maxlength="90">
+                      </label>
+                      <label class="panel-field">
+                        <span>Przycisk banera (CTA)</span>
+                        <input type="text" data-editor-hero-cta maxlength="30" placeholder="Zobacz kolekcję">
+                      </label>
+                      <label class="panel-field panel-field--with-visibility">
+                        <span class="panel-field__label-row">
+                          <span>Komunikat górny (opcjonalnie)</span>
+                          <span class="panel-subsection-visibility-host panel-subsection-visibility-host--inline" data-subsection-visibility="announcement"></span>
+                        </span>
+                        <input type="text" data-editor-announcement maxlength="80" placeholder="Np. Darmowa dostawa od 150 zł">
+                      </label>
+                      <label class="panel-field">
+                        <span>Etykieta banera (badge)</span>
+                        <input type="text" data-editor-hero-badge maxlength="40" placeholder="Np. Kolekcja Wiosna 2026">
+                      </label>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel-card panel-card--collections" data-editor-collections-section data-editor-subsection-card="lookbook">
+                  <div class="panel-card__head">
+                    <div>
+                      <h2 data-editor-collections-heading>Lookbook i kolekcje</h2>
+                      <p data-editor-collections-desc>Do 15 kolekcji ze zdjęciem i przypisanymi produktami w lookbooku.</p>
+                    </div>
+                    <div class="panel-card__head-tools">
+                      <div class="panel-subsection-visibility-host" data-subsection-visibility="lookbook"></div>
+                      <button type="button" class="panel-primary-btn panel-primary-btn--compact" data-add-collection>
+                        <i class="fas fa-plus" aria-hidden="true"></i> <span data-editor-collections-add-label>Dodaj kolekcję</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="panel-card__body">
+                    <div class="panel-form-row panel-form-row--lookbook">
+                      <label class="panel-field">
+                        <span data-editor-collections-title-label>Tytuł sekcji lookbook</span>
+                        <input type="text" data-editor-lookbook-title maxlength="50" placeholder="Kolekcje sezonowe">
+                      </label>
+                      <label class="panel-field">
+                        <span data-editor-collections-subtitle-label>Opis lookbooka</span>
+                        <input type="text" data-editor-lookbook-subtitle maxlength="90" placeholder="Odkryj najnowsze stylizacje">
+                      </label>
+                    </div>
+                    <div class="panel-collections-toolbar">
+                      <span class="panel-collections-toolbar__label" data-editor-collections-toolbar-label><i class="fas fa-layer-group" aria-hidden="true"></i> Twoje kolekcje</span>
+                      <span class="panel-collections-toolbar__count" data-collections-limit-hint>0 / 15</span>
+                    </div>
+                    <div class="panel-collections-editor" data-collections-editor></div>
+                  </div>
+                </section>
+
+                <section class="panel-card panel-card--tech" data-editor-tech-section hidden>
+                  <div class="panel-card__head">
+                    <div>
+                      <h2>Sekcje Tech Store Pro</h2>
+                      <p>Statystyki hero, kategorie, promocje, porównywarka, FAQ i marki — każda zmiana zapisuje się w tym projekcie.</p>
+                    </div>
+                  </div>
+                  <div class="panel-card__body">
+                    <div data-tech-sections-overview hidden></div>
+
+                    <div class="panel-form-row panel-form-row--tech-headings">
+                      <label class="panel-field">
+                        <span>Tytuł porównywarki</span>
+                        <input type="text" data-editor-tech-compare-title maxlength="50" placeholder="Porównaj bestsellery">
+                      </label>
+                      <label class="panel-field">
+                        <span>Opis porównywarki</span>
+                        <input type="text" data-editor-tech-compare-subtitle maxlength="90" placeholder="Zestawienie kluczowych parametrów">
+                      </label>
+                      <label class="panel-field">
+                        <span>Tytuł FAQ</span>
+                        <input type="text" data-editor-tech-faq-title maxlength="50" placeholder="Pytania przed zakupem">
+                      </label>
+                      <label class="panel-field">
+                        <span>Opis FAQ</span>
+                        <input type="text" data-editor-tech-faq-subtitle maxlength="90" placeholder="Gwarancja, dostawa, raty i zwroty">
+                      </label>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="heroStats">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-chart-line" aria-hidden="true"></i> Statystyki w banerze</h3>
+                          <p class="panel-editor-subsection__desc">Trzy liczby pod przyciskami CTA w hero sklepu tech.</p>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="heroStats"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-tech-stats-grid" data-tech-stats-editor></div>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="categories">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-grid-2" aria-hidden="true"></i> Kategorie na stronie głównej</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="categories"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field">
+                            <span>Tytuł sekcji kategorii</span>
+                            <input type="text" data-editor-tech-categories-title maxlength="50" placeholder="Przeglądaj kategorie">
+                          </label>
+                          <label class="panel-field">
+                            <span>Opis kategorii</span>
+                            <input type="text" data-editor-tech-categories-subtitle maxlength="90" placeholder="Szybki dostęp do segmentów oferty">
+                          </label>
+                        </div>
+                        <div class="panel-tech-categories-editor" data-tech-categories-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-tech-category><i class="fas fa-plus" aria-hidden="true"></i> Dodaj kategorię</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="compare">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-table-columns" aria-hidden="true"></i> Porównywarka produktów</h3>
+                          <p class="panel-editor-subsection__desc">Wybierz do 4 aktywnych produktów i parametry do tabeli.</p>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="compare"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-tech-compare-editor" data-tech-compare-editor></div>
+                        <label class="panel-field panel-field--full">
+                          <span>Parametry w tabeli (jeden w wierszu)</span>
+                          <textarea rows="4" data-editor-tech-compare-specs placeholder="Chip / Procesor&#10;Pamięć&#10;Bateria"></textarea>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="faq">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-circle-question" aria-hidden="true"></i> Pytania i odpowiedzi (FAQ)</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="faq"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-tech-faqs-editor" data-tech-faqs-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-tech-faq><i class="fas fa-plus" aria-hidden="true"></i> Dodaj pytanie</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="brands">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-copyright" aria-hidden="true"></i> Pasek marek</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="brands"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field">
+                            <span>Etykieta paska marek</span>
+                            <input type="text" data-editor-tech-brands-label maxlength="40" placeholder="Autoryzowani partnerzy">
+                          </label>
+                          <label class="panel-field panel-field--full">
+                            <span>Marki (jedna w wierszu)</span>
+                            <textarea rows="4" data-editor-tech-brands placeholder="Apple&#10;Samsung&#10;Sony"></textarea>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p class="panel-field-hint"><i class="fas fa-circle-info" aria-hidden="true"></i> Kolory, baner i tryb ciemny edytujesz w <strong>Motyw sklepu</strong>. Promocje tygodnia — w sekcji kolekcji powyżej.</p>
+                  </div>
+                </section>
+
+                <section class="panel-card panel-card--tech" data-editor-enterprise-section hidden>
+                  <div class="panel-card__head">
+                    <div>
+                      <h2>Sekcje Multi-brand Hub</h2>
+                      <p>Portfolio marek, moduły B2B, segmentacja, case studies i portal partnera — edycja per projekt.</p>
+                    </div>
+                  </div>
+                  <div class="panel-card__body">
+                    <div data-ent-sections-overview hidden></div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="heroStats">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-chart-line" aria-hidden="true"></i> Statystyki w banerze</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="heroStats"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-tech-stats-grid" data-ent-stats-editor></div>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="brandHub">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-sitemap" aria-hidden="true"></i> Portfolio marek</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="brandHub"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł sekcji</span><input type="text" data-editor-enterprise-brands-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis sekcji</span><input type="text" data-editor-enterprise-brands-subtitle maxlength="90"></label>
+                        </div>
+                        <div data-ent-brands-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-ent-brand><i class="fas fa-plus" aria-hidden="true"></i> Dodaj markę</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entSolutions">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-layer-group" aria-hidden="true"></i> Platforma B2B</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entSolutions"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł</span><input type="text" data-editor-enterprise-solutions-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis</span><input type="text" data-editor-enterprise-solutions-subtitle maxlength="90"></label>
+                        </div>
+                        <div data-ent-solutions-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-ent-solution><i class="fas fa-plus" aria-hidden="true"></i> Dodaj moduł</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entSegments">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-users-gear" aria-hidden="true"></i> Segmenty klientów</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entSegments"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł</span><input type="text" data-editor-enterprise-segments-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis</span><input type="text" data-editor-enterprise-segments-subtitle maxlength="90"></label>
+                        </div>
+                        <div data-ent-segments-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-ent-segment><i class="fas fa-plus" aria-hidden="true"></i> Dodaj segment</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entCases">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-chart-line" aria-hidden="true"></i> Case studies</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entCases"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł</span><input type="text" data-editor-enterprise-cases-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis</span><input type="text" data-editor-enterprise-cases-subtitle maxlength="90"></label>
+                        </div>
+                        <div data-ent-cases-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-ent-case><i class="fas fa-plus" aria-hidden="true"></i> Dodaj case study</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entPartners">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-handshake" aria-hidden="true"></i> Partnerzy integracji</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entPartners"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <label class="panel-field"><span>Etykieta paska</span><input type="text" data-editor-enterprise-partners-label maxlength="40"></label>
+                        <label class="panel-field panel-field--full"><span>Partnerzy (jeden w wierszu)</span><textarea rows="4" data-editor-enterprise-partners placeholder="BaseLinker&#10;PayU"></textarea></label>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entFaq">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-circle-question" aria-hidden="true"></i> FAQ B2B</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entFaq"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł FAQ</span><input type="text" data-editor-enterprise-faq-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis FAQ</span><input type="text" data-editor-enterprise-faq-subtitle maxlength="90"></label>
+                        </div>
+                        <div data-ent-faqs-editor></div>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-add-ent-faq><i class="fas fa-plus" aria-hidden="true"></i> Dodaj pytanie</button>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="entPortal">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-door-open" aria-hidden="true"></i> Portal B2B</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="entPortal"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field"><span>Tytuł CTA</span><input type="text" data-editor-enterprise-portal-title maxlength="50"></label>
+                          <label class="panel-field"><span>Opis</span><input type="text" data-editor-enterprise-portal-subtitle maxlength="120"></label>
+                          <label class="panel-field"><span>Przycisk</span><input type="text" data-editor-enterprise-portal-cta maxlength="30"></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p class="panel-field-hint"><i class="fas fa-circle-info" aria-hidden="true"></i> Baner, kolory i logo edytujesz w <strong>Motyw sklepu</strong>. Produkty z etykietą marki — w zakładce Produkty.</p>
+                  </div>
+                </section>
+
+                <section class="panel-card">
+                  <div class="panel-card__head"><div><h2>Sekcje sklepu</h2><p>Nagłówki widoczne w podglądzie i na stronie sklepu.</p></div></div>
+                  <div class="panel-card__body">
+                    <div class="panel-editor-subsection panel-editor-subsection--flush" data-editor-subsection="products">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-box-open" aria-hidden="true"></i> Produkty</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="products"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field">
+                            <span>Tytuł sekcji produktów</span>
+                            <input type="text" data-editor-section-title maxlength="50">
+                          </label>
+                          <label class="panel-field">
+                            <span>Opis sekcji produktów</span>
+                            <input type="text" data-editor-section-subtitle maxlength="90">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="about">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-store" aria-hidden="true"></i> O sklepie</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="about"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field">
+                            <span>Tytuł sekcji „O sklepie”</span>
+                            <input type="text" data-editor-about-title maxlength="50">
+                          </label>
+                          <label class="panel-field panel-field--full">
+                            <span>Tekst „O sklepie”</span>
+                            <textarea rows="4" data-editor-about-text maxlength="320" placeholder="Krótki opis marki dla klientów"></textarea>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel-editor-subsection" data-editor-subsection="newsletter">
+                      <div class="panel-editor-subsection__head">
+                        <div class="panel-editor-subsection__titles">
+                          <h3 class="panel-editor-subsection__title"><i class="fas fa-envelope" aria-hidden="true"></i> Newsletter</h3>
+                        </div>
+                        <div class="panel-subsection-visibility-host" data-subsection-visibility="newsletter"></div>
+                      </div>
+                      <div class="panel-editor-subsection__body">
+                        <div class="panel-form-row">
+                          <label class="panel-field">
+                            <span>Tytuł newslettera</span>
+                            <input type="text" data-editor-newsletter-title maxlength="50" placeholder="Dołącz do listy VIP">
+                          </label>
+                          <label class="panel-field">
+                            <span>Opis newslettera</span>
+                            <input type="text" data-editor-newsletter-subtitle maxlength="90" placeholder="Pierwsze info o nowościach i promocjach">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel-card">
+                  <div class="panel-card__head">
+                    <div><h2>Checklist publikacji</h2><p>Odhacz kroki, aby przygotować sklep do startu.</p></div>
+                    <span class="panel-ghost-btn panel-ghost-btn--static" data-editor-checklist-count>0/4</span>
+                  </div>
+                  <div class="panel-card__body panel-setup" data-editor-checklist></div>
+                </section>
+              </div>
+
+              <aside class="panel-editor__aside">
+                <section class="panel-card panel-card--sticky">
+                  <div class="panel-card__head"><div><h2>Podgląd na żywo</h2><p>Aktualizuje się przy każdej zmianie.</p></div></div>
+                  <div class="panel-card__body" data-editor-preview-wrap></div>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOTYW SKLEPU -->
+        <div class="panel-view" data-panel-view="theme" hidden>
+          <div class="panel-editor" data-theme-root>
+            <div class="panel-editor__empty" data-theme-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-palette" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego projektu</h2>
+              <p>Wybierz sklep, aby dostosować kolory, baner i układ motywu.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div class="panel-editor__layout" data-theme-layout hidden>
+              <div class="panel-editor__main">
+                <header class="panel-editor__head">
+                  <div>
+                    <span class="panel-eyebrow"><i class="fas fa-palette" aria-hidden="true"></i> Motyw sklepu</span>
+                    <h1 data-theme-title>Nazwa projektu</h1>
+                    <p data-theme-template-info>Szablon: Moda & Lookbook</p>
+                  </div>
+                  <div class="panel-editor__head-actions">
+                    <button type="button" class="panel-ghost-btn" data-panel-nav="editor"><i class="fas fa-pen-to-square" aria-hidden="true"></i><span>Treść sklepu</span></button>
+                    <button type="button" class="panel-ghost-btn" data-open-full-preview><i class="fas fa-eye" aria-hidden="true"></i><span>Pełny podgląd</span></button>
+                  </div>
+                </header>
+
+                <section class="panel-card">
+                  <div class="panel-card__head"><div><h2>Logo sklepu</h2><p>Prześlij własne logo, wklej link URL lub użyj nazwy tekstowej z czcionką.</p></div></div>
+                  <div class="panel-card__body">
+                    <div class="panel-theme-mode" data-logo-mode-toggle>
+                      <button type="button" class="is-active" data-theme-logo-mode="text"><i class="fas fa-font" aria-hidden="true"></i> Tekst</button>
+                      <button type="button" data-theme-logo-mode="image"><i class="fas fa-image" aria-hidden="true"></i> Obrazek</button>
+                    </div>
+                    <div class="panel-form-row" style="margin-top:0.85rem" data-logo-text-fields>
+                      <label class="panel-field">
+                        <span>Tekst logo</span>
+                        <input type="text" data-theme-logo-text maxlength="40" placeholder="Nazwa marki">
+                      </label>
+                      <label class="panel-field">
+                        <span>Czcionka logo</span>
+                        <select data-theme-logo-font>
+                          <option value="manrope">Manrope — nowoczesna</option>
+                          <option value="satoshi">Satoshi — geometryczna</option>
+                          <option value="playfair">Playfair — edytorialna</option>
+                          <option value="dmsans">DM Sans — minimalistyczna</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="panel-theme-logo-media" data-logo-image-fields hidden>
+                      <div class="panel-theme-logo-preview" data-theme-logo-preview>
+                        <div class="panel-theme-logo-preview__empty" data-theme-logo-preview-empty>
+                          <i class="fas fa-image" aria-hidden="true"></i>
+                          <span>Brak logo</span>
+                          <small>Prześlij plik lub wklej link URL</small>
+                        </div>
+                      </div>
+                      <div class="panel-theme-logo-media__fields">
+                        <label class="panel-upload-dropzone panel-upload-dropzone--compact" data-theme-logo-upload-zone>
+                          <input type="file" accept="image/jpeg,image/png,image/webp,image/svg+xml" data-theme-logo-file hidden>
+                          <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                          <strong>Prześlij logo</strong>
+                          <span>Przeciągnij plik · PNG, JPG, WebP lub SVG · max. 2 MB</span>
+                        </label>
+                        <label class="panel-field panel-field--full">
+                          <span>Lub wklej link do logo</span>
+                          <input type="url" data-theme-logo-image-url placeholder="https://..." maxlength="2000">
+                        </label>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-theme-logo-clear hidden>
+                          <i class="fas fa-trash-can" aria-hidden="true"></i> Usuń logo
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel-card">
+                  <div class="panel-card__head"><div><h2>Styl wizualny</h2><p>Paleta branżowa i tryb jasny / ciemny.</p></div></div>
+                  <div class="panel-card__body">
+                    <p class="panel-theme-locked-hint" data-theme-locked-hint hidden></p>
+                    <div class="panel-theme-grid" data-theme-picker></div>
+                    <div class="panel-theme-mode" data-theme-mode-toggle>
+                      <button type="button" class="is-active" data-theme-color-mode="light"><i class="fas fa-sun" aria-hidden="true"></i> Jasny</button>
+                      <button type="button" data-theme-color-mode="dark"><i class="fas fa-moon" aria-hidden="true"></i> Ciemny</button>
+                    </div>
+                    <p class="panel-field__hint" style="margin-top:0.75rem">Kolory akcentu — szybki wybór</p>
+                    <div class="panel-accent-grid" data-theme-accent-picker></div>
+                  </div>
+                </section>
+
+                <section class="panel-card panel-card--tech-hero">
+                  <div class="panel-card__head">
+                    <div>
+                      <h2>Baner główny</h2>
+                      <p data-theme-hero-card-desc>Prześlij zdjęcie, wybierz z biblioteki AmiQPlace lub wklej link URL.</p>
+                    </div>
+                  </div>
+                  <div class="panel-card__body">
+                    <div class="panel-theme-hero-media">
+                      <div class="panel-tech-hero-preview panel-theme-hero-preview" data-theme-hero-preview>
+                        <div class="panel-tech-hero-preview__empty" data-theme-hero-preview-empty>
+                          <i class="fas fa-panorama" aria-hidden="true"></i>
+                          <span>Brak zdjęcia banera</span>
+                          <small>Prześlij plik, wybierz z biblioteki lub wklej link</small>
+                        </div>
+                      </div>
+                      <div class="panel-theme-hero-media__fields">
+                        <label class="panel-upload-dropzone panel-upload-dropzone--compact" data-theme-hero-upload-zone>
+                          <input type="file" accept="image/jpeg,image/png,image/webp" data-theme-hero-file hidden>
+                          <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                          <strong>Prześlij zdjęcie banera</strong>
+                          <span>Przeciągnij plik tutaj · JPG, PNG lub WebP · max. 2 MB</span>
+                        </label>
+                        <label class="panel-field panel-field--full">
+                          <span>Lub wklej link do zdjęcia</span>
+                          <input type="url" data-theme-hero-image-url placeholder="https://images.unsplash.com/..." maxlength="2000">
+                        </label>
+                        <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-theme-hero-clear hidden>
+                          <i class="fas fa-trash-can" aria-hidden="true"></i> Usuń zdjęcie banera
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="panel-tech-hero-layout-section" data-theme-tech-layout hidden>
+                      <div class="panel-editor-subsection panel-editor-subsection--flush">
+                        <h3 class="panel-editor-subsection__title"><i class="fas fa-table-columns" aria-hidden="true"></i> Układ banera</h3>
+                        <p class="panel-editor-subsection__desc">Wybierz, jak zdjęcie współpracuje z tekstem na stronie głównej (desktop).</p>
+                        <div class="panel-tech-hero-layouts" data-theme-hero-layout-picker></div>
+                      </div>
+                    </div>
+
+                    <div class="panel-banner-presets">
+                      <div class="panel-banner-presets__head">
+                        <span class="panel-field__hint" data-theme-banner-presets-label>Szybki wybór — gotowe tła</span>
+                        <button type="button" class="panel-banner-presets__open-lib" data-open-banner-library hidden>
+                          <i class="fas fa-images" aria-hidden="true"></i> Biblioteka AmiQPlace
+                        </button>
+                      </div>
+                      <div class="panel-banner-presets__grid" data-theme-banner-presets></div>
+                    </div>
+                    <label class="panel-field panel-field--full" style="margin-top:0.85rem">
+                      <span data-theme-hero-overlay-label-text>Nakładka banera (przezroczystość tekstu)</span>
+                      <input type="range" min="0" max="80" step="5" data-theme-hero-overlay value="45">
+                      <span class="panel-field__hint" data-theme-overlay-label>45% — balans zdjęcia i czytelności</span>
+                    </label>
+                  </div>
+                </section>
+
+                <section class="panel-card">
+                  <div class="panel-card__head"><div><h2>Typografia i detale</h2><p>Drobne ustawienia wyglądu sklepu.</p></div></div>
+                  <div class="panel-card__body">
+                    <div class="panel-form-row">
+                      <label class="panel-field">
+                        <span>Zaokrąglenie kart</span>
+                        <select data-theme-card-radius>
+                          <option value="soft">Miękkie</option>
+                          <option value="sharp">Ostre</option>
+                          <option value="pill">Bardzo zaokrąglone</option>
+                        </select>
+                      </label>
+                      <label class="panel-field">
+                        <span>Styl nagłówków</span>
+                        <select data-theme-heading-style>
+                          <option value="modern">Nowoczesny</option>
+                          <option value="editorial">Edytorialny</option>
+                          <option value="compact">Kompaktowy</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <aside class="panel-editor__aside">
+                <section class="panel-card panel-card--sticky">
+                  <div class="panel-card__head"><div><h2>Podgląd motywu</h2><p>Na żywo po każdej zmianie.</p></div></div>
+                  <div class="panel-card__body" data-theme-preview-wrap></div>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUKTY -->
+        <div class="panel-view" data-panel-view="products" hidden>
+          <div class="panel-products-view" data-products-root>
+            <div class="panel-editor__empty" data-products-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-box-open" aria-hidden="true"></i></div>
+              <h2>Najpierw wybierz projekt</h2>
+              <p>Produkty są przypisane do konkretnego sklepu. Utwórz projekt, a potem dodaj ofertę.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-products-layout hidden>
+              <header class="panel-products-view__head">
+                <div>
+                  <span class="panel-eyebrow"><i class="fas fa-box" aria-hidden="true"></i> Katalog produktów</span>
+                  <h1>Produkty — <span data-products-project-name>Sklep</span></h1>
+                  <p>Zarządzaj ofertą aktywnego projektu. Dane zapisują się lokalnie (demo).</p>
+                </div>
+                <button type="button" class="panel-primary-btn" data-open-product-modal><i class="fas fa-plus" aria-hidden="true"></i><span>Dodaj produkt</span></button>
+              </header>
+              <div class="panel-products-toolbar">
+                <label class="panel-search panel-search--compact">
+                  <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                  <input type="search" placeholder="Szukaj po nazwie..." data-products-filter>
+                </label>
+                <span class="panel-products-toolbar__count" data-products-count>0 produktów</span>
+                <span class="panel-products-toolbar__inventory" data-products-inventory-hint hidden></span>
+              </div>
+              <div class="panel-products-list" data-products-list></div>
+              <p class="panel-limit-hint" data-products-limit-hint hidden></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZAMÓWIENIA -->
+        <div class="panel-view" data-panel-view="orders" hidden>
+          <div data-orders-root>
+            <div class="panel-editor__empty" data-orders-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-cart-shopping" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego sklepu</h2>
+              <p>Zamówienia są powiązane z projektem. Utwórz sklep i dodaj produkty, aby zobaczyć demo zamówień.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-orders-layout hidden>
+              <header class="panel-products-view__head">
+                <div>
+                  <span class="panel-eyebrow"><i class="fas fa-cart-shopping" aria-hidden="true"></i> Zamówienia</span>
+                  <h1>Lista zamówień — <span data-orders-project-name>Sklep</span></h1>
+                  <p>Symulacja panelu zamówień — kliknij wiersz, aby zobaczyć warianty i pozycje.</p>
+                </div>
+                <div class="panel-products-view__actions">
+                  <button type="button" class="panel-ghost-btn" data-export-orders-csv><i class="fas fa-file-csv" aria-hidden="true"></i> Eksport CSV</button>
+                  <button type="button" class="panel-ghost-btn" data-generate-demo-order><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Symuluj zamówienie</button>
+                </div>
+              </header>
+              <div class="panel-orders-tabs" role="tablist" data-orders-filter-tabs>
+                <button type="button" class="is-active" data-orders-filter="all">Wszystkie</button>
+                <button type="button" data-orders-filter="new">Nowe</button>
+                <button type="button" data-orders-filter="processing">W realizacji</button>
+                <button type="button" data-orders-filter="done">Zrealizowane</button>
+              </div>
+              <div class="panel-orders-table" data-orders-list></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KLIENCI -->
+        <div class="panel-view" data-panel-view="customers" hidden>
+          <div data-customers-root>
+            <div class="panel-editor__empty" data-customers-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego sklepu</h2>
+              <p>Lista klientów jest powiązana z projektem. Utwórz sklep i generuj zamówienia demo.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-customers-layout hidden>
+              <header class="panel-products-view__head">
+                <div>
+                  <span class="panel-eyebrow"><i class="fas fa-users" aria-hidden="true"></i> Klienci</span>
+                  <h1>Baza klientów — <span data-customers-project-name>Sklep</span></h1>
+                  <p>Demo CRM — klienci z zamówień i ręczne wpisy. Docelowo synchronizacja z backendem.</p>
+                </div>
+                <button type="button" class="panel-primary-btn" data-open-customer-modal><i class="fas fa-user-plus" aria-hidden="true"></i> Dodaj klienta</button>
+              </header>
+              <div class="panel-products-toolbar">
+                <label class="panel-search panel-search--compact">
+                  <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                  <input type="search" placeholder="Szukaj po imieniu lub e-mail..." data-customers-filter>
+                </label>
+                <span class="panel-products-toolbar__count" data-customers-count>0 klientów</span>
+              </div>
+              <div class="panel-customers-list" data-customers-list></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANALITYKA -->
+        <div class="panel-view" data-panel-view="analytics" hidden>
+          <div data-analytics-root>
+            <div class="panel-editor__empty" data-analytics-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego sklepu</h2>
+              <p>Analityka jest powiązana z projektem. Utwórz sklep i wygeneruj demo zamówienia, aby zobaczyć wykresy.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-analytics-layout hidden>
+              <header class="panel-products-view__head">
+                <div>
+                  <span class="panel-eyebrow"><i class="fas fa-chart-line" aria-hidden="true"></i> Analityka</span>
+                  <h1>Raport sklepu — <span data-analytics-project-name>Sklep</span></h1>
+                  <p>Dane demonstracyjne z zamówień, produktów i klientów. Docelowo synchronizacja z backendem i Google Analytics.</p>
+                </div>
+                <button type="button" class="panel-ghost-btn" data-generate-demo-order><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Symuluj zamówienie</button>
+              </header>
+
+              <div class="panel-analytics-toolbar">
+                <div class="panel-orders-tabs" role="tablist" aria-label="Zakres dat">
+                  <button type="button" class="is-active" data-analytics-range="7d">7 dni</button>
+                  <button type="button" data-analytics-range="30d">30 dni</button>
+                </div>
+                <div class="panel-orders-tabs" role="tablist" aria-label="Metryka wykresu">
+                  <button type="button" class="is-active" data-analytics-metric="revenue">Przychód</button>
+                  <button type="button" data-analytics-metric="orders">Zamówienia</button>
+                  <button type="button" data-analytics-metric="visits">Odwiedziny</button>
+                </div>
+              </div>
+
+              <div class="panel-analytics-kpis" data-analytics-kpis></div>
+
+              <section class="panel-card panel-analytics-chart-card">
+                <div class="panel-card__head">
+                  <div><h2 data-analytics-chart-title>Przychód — ostatnie 7 dni</h2><p data-analytics-chart-subtitle>Sumy dzienne z zamówień demo.</p></div>
+                  <span class="panel-ghost-btn panel-ghost-btn--static" data-analytics-period-label>7 dni</span>
+                </div>
+                <div class="panel-card__body" data-analytics-chart></div>
+              </section>
+
+              <div class="panel-analytics-grid">
+                <section class="panel-card">
+                  <div class="panel-card__head">
+                    <div><h2>Top produkty</h2><p>Najczęściej sprzedawane w wybranym okresie.</p></div>
+                  </div>
+                  <div class="panel-card__body" data-analytics-top-products></div>
+                </section>
+                <section class="panel-card">
+                  <div class="panel-card__head">
+                    <div><h2>Klienci</h2><p>Podsumowanie bazy klientów sklepu.</p></div>
+                  </div>
+                  <div class="panel-card__body" data-analytics-customers></div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PŁATNOŚCI I DOSTAWY -->
+        <div class="panel-view" data-panel-view="checkout" hidden>
+          <div class="panel-checkout" data-checkout-root>
+            <div class="panel-editor__empty" data-checkout-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-credit-card" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego sklepu</h2>
+              <p>Konfiguracja płatności i dostaw jest przypisana do projektu. Utwórz sklep, aby uruchomić kreator.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-checkout-app hidden>
+              <header class="panel-products-view__head">
+                <div>
+                  <span class="panel-eyebrow"><i class="fas fa-truck-fast" aria-hidden="true"></i> Kreator checkoutu</span>
+                  <h1>Płatności i dostawy — <span data-checkout-project-name>Sklep</span></h1>
+                  <p>Tryb demo — zapis lokalny. Docelowo podłączysz PayU, Przelewy24, Stripe i API kurierów.</p>
+                </div>
+              </header>
+              <div class="panel-checkout__body" data-checkout-wizard></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PORTFEL I WYPŁATY -->
+        <div class="panel-view" data-panel-view="wallet" hidden>
+          <div data-wallet-root>
+            <div class="panel-editor__empty" data-wallet-empty>
+              <div class="panel-editor__empty-icon"><i class="fas fa-wallet" aria-hidden="true"></i></div>
+              <h2>Brak aktywnego sklepu</h2>
+              <p>Portfel jest powiązany z projektem. Utwórz sklep i generuj zamówienia, aby zobaczyć saldo i historię wypłat.</p>
+              <button type="button" class="panel-primary-btn" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+            </div>
+            <div data-wallet-layout hidden>
+              <div data-wallet-content></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WTYCZKI -->
+        <div class="panel-view" data-panel-view="plugins" hidden>
+          <div class="panel-plugins" data-plugins-root>
+            <header class="panel-products-view__head">
+              <div>
+                <span class="panel-eyebrow"><i class="fas fa-puzzle-piece" aria-hidden="true"></i> Wtyczki</span>
+                <h1>Rozszerzenia sklepu</h1>
+                <p>Wyszukaj i aktywuj wtyczki AmiQPlace oraz integracje partnerów. Katalog rozbudujemy o kolejne moduły.</p>
+              </div>
+            </header>
+            <div class="panel-plugins-toolbar">
+              <label class="panel-plugins-search" aria-label="Szukaj wtyczek">
+                <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" placeholder="Szukaj wtyczek, dostawców, kategorii…" data-plugins-search autocomplete="off">
+              </label>
+              <div class="panel-orders-tabs panel-plugins-source-tabs" role="tablist" aria-label="Źródło wtyczek">
+                <button type="button" class="is-active" data-plugins-source="all">Wszystkie</button>
+                <button type="button" data-plugins-source="amiq">AmiQPlace</button>
+                <button type="button" data-plugins-source="partner">Partnerzy</button>
+              </div>
+            </div>
+            <div class="panel-plugins-categories" data-plugins-categories role="tablist" aria-label="Kategorie wtyczek"></div>
+            <div class="panel-plugins-meta">
+              <span data-plugins-count>0 wtyczek</span>
+              <span class="panel-plugins-meta__hint" data-plugins-project-hint hidden>Instalacja przypisana do aktywnego sklepu</span>
+            </div>
+            <div class="panel-plugins-grid" data-plugins-grid></div>
+            <div class="panel-plugins-empty" data-plugins-empty hidden>
+              <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+              <strong>Brak wyników</strong>
+              <p>Spróbuj innej frazy lub zmień filtr kategorii.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WTYCZKI — aplikacja (Dropshipping AI itd.) -->
+        <div class="panel-view" data-panel-view="plugin-app" hidden>
+          <div class="panel-plugin-app" data-plugin-app-mount></div>
+        </div>
+
+        <!-- SPOŁECZNOŚĆ — RYNEK -->
+        <div class="panel-view" data-panel-view="community" hidden>
+          <div class="panel-community" data-community-root>
+            <header class="panel-community__hero">
+              <div class="panel-community__hero-copy">
+                <span class="panel-eyebrow"><i class="fas fa-people-group" aria-hidden="true"></i> Społeczność AmiQPlace</span>
+                <h1>Rynek projektów</h1>
+                <p>Twórz strony, szablony i komponenty sklepu — publikuj je za darmo, sprzedawaj lub wymieniaj się z innymi twórcami. Rynek społecznościowy będzie centralnym miejscem odkrywania gotowych rozwiązań.</p>
+                <div class="panel-community__hero-badges">
+                  <span class="panel-community__pill"><i class="fas fa-clock" aria-hidden="true"></i> Wkrótce</span>
+                  <span class="panel-community__pill panel-community__pill--soft">Beta po uruchomieniu backendu</span>
+                </div>
+              </div>
+              <div class="panel-community__hero-visual" aria-hidden="true">
+                <div class="panel-community__hero-card panel-community__hero-card--1">
+                  <i class="fas fa-shirt"></i>
+                  <span>Moda & Lookbook</span>
+                  <em>Darmowy</em>
+                </div>
+                <div class="panel-community__hero-card panel-community__hero-card--2">
+                  <i class="fas fa-gem"></i>
+                  <span>Maison Éclat</span>
+                  <em>49 zł</em>
+                </div>
+                <div class="panel-community__hero-card panel-community__hero-card--3">
+                  <i class="fas fa-microchip"></i>
+                  <span>Tech Store Pro</span>
+                  <em>29 zł</em>
+                </div>
+              </div>
+            </header>
+
+            <section class="panel-community__features" aria-labelledby="community-features-title">
+              <h2 id="community-features-title">Co będzie możliwe na rynku</h2>
+              <div class="panel-community__grid">
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-upload" aria-hidden="true"></i></span>
+                  <h3>Publikuj za darmo</h3>
+                  <p>Udostępnij gotowy szablon, sekcję hero lub paczkę grafik — buduj reputację i zdobywaj obserwujących.</p>
+                </article>
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-tags" aria-hidden="true"></i></span>
+                  <h3>Sprzedawaj projekty</h3>
+                  <p>Ustal własną cenę, oferuj licencje komercyjne i otrzymuj wypłaty przez portfel AmiQPlace.</p>
+                </article>
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-clone" aria-hidden="true"></i></span>
+                  <h3>Import jednym kliknięciem</h3>
+                  <p>Sklonuj projekt ze rynku do swojego panelu i dopracuj go pod własną markę — bez kodowania od zera.</p>
+                </article>
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-star-half-stroke" aria-hidden="true"></i></span>
+                  <h3>Oceny i recenzje</h3>
+                  <p>Społeczność weryfikuje jakość — najlepsze projekty trafiają na listy polecanych i wyróżnienia.</p>
+                </article>
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></span>
+                  <h3>Elementy i paczki</h3>
+                  <p>Banery, sekcje landing page, style motywu, zestawy produktów demo — sprzedawaj pojedyncze elementy.</p>
+                </article>
+                <article class="panel-community__feature">
+                  <span class="panel-community__feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+                  <h3>Bezpieczne transakcje</h3>
+                  <p>Licencje, podgląd przed zakupem i moderacja treści — rynek zaprojektowany pod zaufanie twórców.</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="panel-community__roadmap">
+              <div class="panel-community__roadmap-copy">
+                <h2>Plan uruchomienia</h2>
+                <p>Rynek wymaga backendu i kont użytkowników — pracujemy nad tym w kolejnej fazie AmiQPlace. Na razie możesz budować sklepy w panelu i przygotować projekty pod publikację.</p>
+                <ul class="panel-community__roadmap-list">
+                  <li><i class="fas fa-circle-check" aria-hidden="true"></i> Katalog szablonów w menedżerze projektów</li>
+                  <li><i class="fas fa-circle-check" aria-hidden="true"></i> Biblioteka banerów i motywów</li>
+                  <li><i class="fas fa-hourglass-half" aria-hidden="true"></i> Profil twórcy i publikacja na rynku</li>
+                  <li><i class="fas fa-hourglass-half" aria-hidden="true"></i> Płatności między użytkownikami</li>
+                </ul>
+              </div>
+              <aside class="panel-community__notify">
+                <strong>Zainteresowany rynkiem?</strong>
+                <p>Przygotowujemy wczesny dostęp dla aktywnych użytkowników panelu.</p>
+                <button type="button" class="panel-primary-btn" data-community-notify><i class="fas fa-bell" aria-hidden="true"></i> Powiadom mnie o starcie</button>
+                <button type="button" class="panel-ghost-btn" data-panel-nav="editor"><i class="fas fa-pen-to-square" aria-hidden="true"></i> Przygotuj projekt</button>
+              </aside>
+            </section>
+          </div>
+        </div>
+
+        <!-- USTAWIENIA -->
+        <div class="panel-view" data-panel-view="settings" hidden>
+          <div class="panel-settings">
+            <header class="panel-settings__head">
+              <div>
+                <span class="panel-eyebrow"><i class="fas fa-gear" aria-hidden="true"></i> Ustawienia panelu</span>
+                <h1>Preferencje i konto</h1>
+                <p>Zarządzaj profilem, sklepem, powiadomieniami i bezpieczeństwem — zmiany zapisują się lokalnie w demo.</p>
+              </div>
+            </header>
+            <div class="panel-settings__layout">
+              <nav class="panel-settings__nav" aria-label="Sekcje ustawień">
+                <button type="button" class="is-active" data-settings-tab="general"><i class="fas fa-sliders" aria-hidden="true"></i> Ogólne</button>
+                <button type="button" data-settings-tab="store"><i class="fas fa-store" aria-hidden="true"></i> Sklep</button>
+                <button type="button" data-settings-tab="domain"><i class="fas fa-globe" aria-hidden="true"></i> Domena własna</button>
+                <button type="button" data-settings-tab="plan"><i class="fas fa-layer-group" aria-hidden="true"></i> Plan i limity</button>
+                <button type="button" data-settings-tab="checkout"><i class="fas fa-credit-card" aria-hidden="true"></i> Płatności i dostawy</button>
+                <button type="button" data-settings-tab="notifications"><i class="fas fa-bell" aria-hidden="true"></i> Powiadomienia</button>
+                <button type="button" data-settings-tab="security"><i class="fas fa-shield-halved" aria-hidden="true"></i> Bezpieczeństwo</button>
+                <button type="button" data-settings-tab="trash"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i> Historia usuniętych</button>
+              </nav>
+              <div class="panel-settings__panels">
+                <section class="panel-settings__panel is-active" data-settings-panel="general"></section>
+                <section class="panel-settings__panel" data-settings-panel="store" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="domain" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="plan" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="checkout" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="notifications" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="security" hidden></section>
+                <section class="panel-settings__panel" data-settings-panel="trash" hidden></section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-mobile-menu" id="panel-mobile-menu" data-panel-mobile-menu hidden aria-hidden="true">
+    <div class="panel-mobile-menu__backdrop" data-close-mobile-menu tabindex="-1"></div>
+    <aside class="panel-mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Menu panelu">
+      <header class="panel-mobile-menu__head">
+        <div>
+          <strong>Menu panelu</strong>
+          <span>Te same sekcje co w wersji desktopowej</span>
+        </div>
+        <button type="button" class="panel-icon-btn" data-close-mobile-menu aria-label="Zamknij menu">
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+      <div class="panel-mobile-menu__body" data-panel-mobile-menu-nav aria-label="Nawigacja panelu"></div>
+    </aside>
+  </div>
+
+  <nav class="panel-mobile-nav" aria-label="Nawigacja mobilna panelu">
+    <a href="#" class="is-active" data-panel-nav="dashboard"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>Pulpit</span></a>
+    <a href="#" data-panel-nav="products"><i class="fas fa-box" aria-hidden="true"></i><span>Produkty</span></a>
+    <a href="#" data-panel-nav="editor"><i class="fas fa-store" aria-hidden="true"></i><span>Sklep</span></a>
+    <a href="#" data-open-full-preview><i class="fas fa-eye" aria-hidden="true"></i><span>Podgląd</span></a>
+    <a href="#" data-open-projects-modal><i class="fas fa-plus" aria-hidden="true"></i><span>Nowy</span></a>
+  </nav>
+
+  <!-- Modal projektów -->
+  <div class="panel-modal" id="projects-modal" role="dialog" aria-modal="true" aria-labelledby="projects-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-projects-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-layer-group" aria-hidden="true"></i> Menedżer projektów</span>
+          <h2 id="projects-modal-title">Stwórz lub wybierz projekt sklepu</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-projects-modal aria-label="Zamknij okno">
+          <span class="panel-modal__close-icon" aria-hidden="true"></span>
+        </button>
+      </header>
+      <nav class="panel-modal__tabs" role="tablist" aria-label="Sekcje projektów">
+        <button type="button" class="panel-modal__tab is-active" role="tab" data-projects-tab="create"><i class="fas fa-plus" aria-hidden="true"></i> Stwórz projekt</button>
+        <button type="button" class="panel-modal__tab" role="tab" data-projects-tab="mine"><i class="fas fa-folder-open" aria-hidden="true"></i> Twoje projekty <span class="panel-modal__count" data-project-count>0</span></button>
+        <button type="button" class="panel-modal__tab" role="tab" data-projects-tab="amiq"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Projekty AmiQPlace</button>
+      </nav>
+      <div class="panel-modal__body">
+        <section class="panel-modal__panel is-active" data-projects-panel="create"></section>
+        <section class="panel-modal__panel" data-projects-panel="mine" hidden></section>
+        <section class="panel-modal__panel" data-projects-panel="amiq" hidden></section>
+      </div>
+      <footer class="panel-modal__foot">
+        <span class="panel-modal__plan" data-current-plan-badge><i class="fas fa-shield-halved" aria-hidden="true"></i> Plan: Trial</span>
+        <a href="plany.html" class="panel-modal__upgrade">Odblokuj więcej szablonów — zmień plan</a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Potwierdzenie usunięcia projektu -->
+  <div class="panel-modal panel-modal--compact panel-modal--confirm" id="delete-project-modal" role="alertdialog" aria-modal="true" aria-labelledby="delete-project-title" aria-describedby="delete-project-desc" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-delete-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head panel-modal__head--confirm">
+        <div class="panel-confirm__icon" aria-hidden="true"><i class="fas fa-triangle-exclamation"></i></div>
+        <div>
+          <span class="panel-modal__eyebrow">Usuwanie projektu</span>
+          <h2 id="delete-project-title">Usunąć ten projekt?</h2>
+          <p id="delete-project-desc" data-delete-project-desc>Ta operacja przeniesie projekt do historii usuniętych. Przez 30 dni możesz go przywrócić w Ustawieniach.</p>
+        </div>
+      </header>
+      <div class="panel-modal__body panel-confirm__body">
+        <div class="panel-confirm__project" data-delete-project-preview></div>
+      </div>
+      <footer class="panel-confirm__actions">
+        <button type="button" class="panel-ghost-btn" data-close-delete-modal>Anuluj</button>
+        <button type="button" class="panel-confirm__danger" data-confirm-delete-project><i class="fas fa-trash-can" aria-hidden="true"></i> Tak, usuń projekt</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Publikacja sklepu -->
+  <div class="panel-modal panel-modal--compact panel-modal--publish" id="publish-modal" role="dialog" aria-modal="true" aria-labelledby="publish-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-publish-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow" data-publish-modal-eyebrow><i class="fas fa-rocket" aria-hidden="true"></i> Publikacja</span>
+          <h2 id="publish-modal-title">Opublikuj sklep</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-publish-modal aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <div class="panel-modal__body" data-publish-modal-body></div>
+      <footer class="panel-confirm__actions panel-publish-modal__foot" data-publish-modal-foot></footer>
+    </div>
+  </div>
+
+  <!-- Kategoria sklepu — onboarding -->
+  <div class="panel-modal panel-modal--category" id="category-onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="category-wizard-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-category-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog panel-modal__dialog--wide">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-compass" aria-hidden="true"></i> Dopasowanie sklepu</span>
+          <h2 id="category-wizard-title" data-category-wizard-title>Konfiguracja kategorii</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-category-modal aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <div class="panel-category-wizard__progress" data-category-wizard-progress></div>
+      <div class="panel-modal__body panel-category-wizard__body" data-category-wizard-body></div>
+      <footer class="panel-modal__foot panel-category-wizard__foot" data-category-wizard-foot></footer>
+    </div>
+  </div>
+
+  <!-- Modal produktu -->
+  <div class="panel-modal panel-modal--product" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-product-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-box" aria-hidden="true"></i> Katalog</span>
+          <h2 id="product-modal-title" data-product-modal-title>Dodaj produkt</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-product-modal aria-label="Zamknij okno">
+          <span class="panel-modal__close-icon" aria-hidden="true"></span>
+        </button>
+      </header>
+      <form class="panel-modal__body panel-product-form panel-product-form--extended" data-product-form>
+        <input type="hidden" data-product-id>
+        <input type="hidden" data-product-image>
+        <div class="panel-product-form__layout">
+          <section class="panel-product-form__media" aria-label="Zdjęcie produktu">
+            <div class="panel-product-form__preview" data-product-image-preview>
+              <div class="panel-product-form__preview-empty" data-product-image-empty>
+                <i class="fas fa-camera" aria-hidden="true"></i>
+                <span>Dodaj zdjęcie produktu</span>
+                <small>Prześlij plik, wklej link lub wybierz gotowe zdjęcie</small>
+              </div>
+            </div>
+            <label class="panel-upload-dropzone" data-product-upload-zone>
+              <input type="file" accept="image/jpeg,image/png,image/webp" data-product-image-file hidden>
+              <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+              <strong>Prześlij ze swojego komputera</strong>
+              <span>JPG, PNG lub WebP · max. 2 MB w demo</span>
+            </label>
+            <label class="panel-field panel-field--full">
+              <span>Lub wklej link do zdjęcia</span>
+              <input type="url" data-product-image-url placeholder="https://images.unsplash.com/..." maxlength="2000">
+            </label>
+            <div class="panel-product-form__presets">
+              <span class="panel-field__hint">Gotowe zdjęcia produktów:</span>
+              <div class="panel-banner-presets__grid panel-banner-presets__grid--products" data-product-image-presets></div>
+            </div>
+            <div class="panel-upload-notice">
+              <i class="fas fa-circle-info" aria-hidden="true"></i>
+              <div>
+                <strong>Demo vs. produkcja</strong>
+                <p>W demo zdjęcie z komputera zapisuje się w przeglądarce. W pełnej wersji sklepu pliki trafią na serwer AmiQPlace (CDN) — bez ręcznego linkowania.</p>
+              </div>
+            </div>
+            <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-product-image-clear hidden>
+              <i class="fas fa-xmark" aria-hidden="true"></i> Usuń zdjęcie
+            </button>
+          </section>
+          <section class="panel-product-form__details" aria-label="Szczegóły produktu">
+            <label class="panel-field panel-field--full">
+              <span>Nazwa produktu</span>
+              <input type="text" required data-product-name maxlength="80" placeholder="np. Koszulka Premium">
+            </label>
+            <div class="panel-form-row">
+              <label class="panel-field">
+                <span>Cena (zł)</span>
+                <input type="number" required min="0" step="0.01" data-product-price placeholder="99.00">
+              </label>
+              <label class="panel-field">
+                <span>Stan magazynowy</span>
+                <input type="number" required min="0" step="1" data-product-stock placeholder="10">
+              </label>
+            </div>
+            <div class="panel-form-row">
+              <label class="panel-field">
+                <span>Status</span>
+                <select data-product-status>
+                  <option value="active">Aktywny — widoczny w sklepie</option>
+                  <option value="draft">Szkic — ukryty</option>
+                </select>
+              </label>
+              <label class="panel-field">
+                <span>Etykieta na karcie</span>
+                <select data-product-tag>
+                  <option value="">Brak etykiety</option>
+                  <option value="Nowość">Nowość</option>
+                  <option value="Bestseller">Bestseller</option>
+                  <option value="Promocja">Promocja</option>
+                  <option value="Limitowana">Limitowana edycja</option>
+                </select>
+              </label>
+            </div>
+            <label class="panel-field panel-field--full">
+              <span>Kategoria produktu</span>
+              <select data-product-category>
+                <option value="">— Wybierz kategorię —</option>
+              </select>
+            </label>
+            <p class="panel-field-hint panel-field-hint--category" data-product-category-hint></p>
+            <label class="panel-field panel-field--full">
+              <span>Krótki opis (na karcie produktu)</span>
+              <textarea rows="3" data-product-desc maxlength="200" placeholder="Materiał, rozmiary, wyróżniki produktu…"></textarea>
+            </label>
+          </section>
+        </div>
+        <section class="panel-product-form__extended">
+          <h3 class="panel-product-form__section-title"><i class="fas fa-truck-fast" aria-hidden="true"></i> Dostawa i parametry</h3>
+          <div class="panel-form-row panel-form-row--3">
+            <label class="panel-field">
+              <span>Czas wysyłki</span>
+              <select data-product-shipping>
+                <option value="24–48 h">24–48 h (express)</option>
+                <option value="1–3 dni robocze" selected>1–3 dni robocze</option>
+                <option value="2–4 dni robocze">2–4 dni robocze</option>
+                <option value="3–5 dni robocze">3–5 dni robocze</option>
+                <option value="7–14 dni">7–14 dni (na zamówienie)</option>
+              </select>
+            </label>
+            <label class="panel-field">
+              <span>Kod SKU</span>
+              <input type="text" data-product-sku maxlength="32" placeholder="np. KOS-001">
+            </label>
+            <label class="panel-field">
+              <span>Cena przekreślona (promocja)</span>
+              <input type="number" min="0" step="0.01" data-product-compare-price placeholder="Opcjonalnie">
+            </label>
+          </div>
+          <div class="panel-product-variants-block">
+            <div class="panel-product-variants-block__head">
+              <div>
+                <strong>Rozmiary i warianty</strong>
+                <span class="panel-field__hint">Klient wybierze opcję na stronie produktu — wariant trafi do zamówienia.</span>
+              </div>
+              <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-product-variant-add>
+                <i class="fas fa-plus" aria-hidden="true"></i> Dodaj opcję
+              </button>
+            </div>
+            <div class="panel-product-variants-editor" data-product-variants-editor></div>
+          </div>
+          <div class="panel-product-specs-block" data-product-specs-block hidden>
+            <div class="panel-product-specs-block__head">
+              <div>
+                <strong>Specyfikacja techniczna</strong>
+                <span class="panel-field__hint">Parametry na stronie produktu i skrót na karcie w katalogu tech (max. 2 pierwsze).</span>
+              </div>
+              <label class="panel-subsection-visibility panel-subsection-visibility--specs">
+                <input type="checkbox" data-product-specs-visible checked aria-label="Pokaż specyfikację na stronie produktu">
+                <span class="panel-subsection-visibility__track" aria-hidden="true"></span>
+                <span class="panel-subsection-visibility__label">Widoczna</span>
+              </label>
+            </div>
+            <div class="panel-product-specs-editor" data-product-specs-editor></div>
+            <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-product-spec-add>
+              <i class="fas fa-plus" aria-hidden="true"></i> Dodaj parametr
+            </button>
+          </div>
+          <label class="panel-field panel-field--full">
+            <span>Rozszerzony opis (strona produktu)</span>
+            <textarea rows="5" data-product-long-desc maxlength="1200" placeholder="Pełny opis na stronie produktu. Możesz pisać akapitami — oddziel je pustą linią."></textarea>
+          </label>
+          <div class="panel-product-gallery-block">
+            <div class="panel-product-gallery-block__head">
+              <div>
+                <strong>Galeria zdjęć w opisie</strong>
+                <span class="panel-field__hint">Do 5 dodatkowych zdjęć — pojawią się na stronie produktu pod opisem.</span>
+              </div>
+              <button type="button" class="panel-ghost-btn panel-ghost-btn--compact" data-product-gallery-add>
+                <i class="fas fa-plus" aria-hidden="true"></i> Dodaj zdjęcie
+              </button>
+            </div>
+            <div class="panel-product-gallery-editor" data-product-gallery-editor></div>
+          </div>
+        </section>
+        <div class="panel-product-form__actions panel-product-form__actions--extended">
+          <button type="button" class="panel-ghost-btn" data-close-product-modal>Anuluj</button>
+          <button type="submit" class="panel-primary-btn"><i class="fas fa-check" aria-hidden="true"></i> Zapisz produkt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel-toast" data-panel-toast role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <div class="panel-modal panel-modal--order" id="order-detail-modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-order-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog panel-modal__dialog--wide">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-receipt" aria-hidden="true"></i> Szczegóły zamówienia</span>
+          <h2 id="order-modal-title" data-order-modal-title>Zamówienie</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-order-modal aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <div class="panel-modal__body" data-order-modal-body></div>
+      <footer class="panel-modal__foot">
+        <button type="button" class="panel-ghost-btn" data-close-order-modal>Zamknij</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Podgląd szablonu AmiQPlace -->
+  <div class="panel-modal panel-modal--preview" id="template-preview-modal" role="dialog" aria-modal="true" aria-labelledby="template-preview-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-template-preview tabindex="-1"></div>
+    <div class="panel-modal__dialog panel-modal__dialog--wide">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-eye" aria-hidden="true"></i> Podgląd szablonu</span>
+          <h2 id="template-preview-title" data-template-preview-name>Szablon</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-template-preview aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <div class="panel-modal__body panel-template-preview">
+        <p class="panel-template-preview__desc" data-template-preview-desc></p>
+        <div class="panel-template-preview__frame" data-template-preview-frame></div>
+      </div>
+      <footer class="panel-template-preview__foot">
+        <button type="button" class="panel-ghost-btn" data-close-template-preview>Zamknij</button>
+        <button type="button" class="panel-primary-btn" data-template-preview-add hidden><i class="fas fa-download" aria-hidden="true"></i> Dodaj do projektów</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal kolekcji -->
+  <div class="panel-modal panel-modal--collection" id="collection-modal" role="dialog" aria-modal="true" aria-labelledby="collection-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-collection-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-layer-group" aria-hidden="true"></i> Lookbook</span>
+          <h2 id="collection-modal-title">Edytuj kolekcję</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-collection-modal aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <form class="panel-modal__body panel-collection-form" data-collection-form>
+        <input type="hidden" data-collection-id>
+        <div class="panel-collection-form__layout">
+          <section class="panel-collection-form__media" aria-label="Zdjęcie kolekcji">
+            <div class="panel-collection-form__preview" data-collection-image-preview>
+              <div class="panel-collection-form__preview-empty" data-collection-image-empty>
+                <i class="fas fa-image" aria-hidden="true"></i>
+                <span>Dodaj zdjęcie kolekcji</span>
+                <small>Wklej link lub wybierz gotowe tło poniżej</small>
+              </div>
+            </div>
+            <label class="panel-field panel-field--full">
+              <span>Link do zdjęcia (JPG / PNG / WebP)</span>
+              <input type="url" data-collection-image placeholder="https://images.unsplash.com/..." maxlength="500">
+            </label>
+            <div class="panel-collection-form__presets">
+              <span class="panel-field__hint">Gotowe zdjęcia modowe:</span>
+              <div class="panel-banner-presets__grid panel-banner-presets__grid--collection" data-collection-image-presets></div>
+            </div>
+          </section>
+          <section class="panel-collection-form__details" aria-label="Szczegóły kolekcji">
+            <label class="panel-field panel-field--full">
+              <span>Tytuł kolekcji</span>
+              <input type="text" required data-collection-title maxlength="40" placeholder="Np. Nowa kolekcja">
+            </label>
+            <label class="panel-field panel-field--full">
+              <span>Podtytuł</span>
+              <input type="text" data-collection-subtitle maxlength="60" placeholder="Np. Wiosna 2026">
+            </label>
+            <div class="panel-field panel-field--full">
+              <span>Produkty w kolekcji <em class="panel-collection-form__count" data-collection-product-count>0</em></span>
+              <div class="panel-collection-products" data-collection-products-picker></div>
+            </div>
+          </section>
+        </div>
+        <div class="panel-collection-form__actions">
+          <button type="button" class="panel-ghost-btn" data-close-collection-modal>Anuluj</button>
+          <button type="submit" class="panel-primary-btn"><i class="fas fa-check" aria-hidden="true"></i> Zapisz kolekcję</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal klienta -->
+  <div class="panel-modal panel-modal--compact" id="customer-modal" role="dialog" aria-modal="true" aria-labelledby="customer-modal-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-customer-modal tabindex="-1"></div>
+    <div class="panel-modal__dialog">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-user-plus" aria-hidden="true"></i> Nowy klient</span>
+          <h2 id="customer-modal-title">Dodaj klienta</h2>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-customer-modal aria-label="Zamknij"><span class="panel-modal__close-icon" aria-hidden="true"></span></button>
+      </header>
+      <form class="panel-modal__body panel-product-form" data-customer-form>
+        <input type="hidden" data-customer-id>
+        <label class="panel-field"><span>Imię i nazwisko</span><input type="text" required data-customer-name maxlength="80" placeholder="Anna Kowalska"></label>
+        <label class="panel-field"><span>E-mail</span><input type="email" required data-customer-email maxlength="80" placeholder="anna@email.pl"></label>
+        <label class="panel-field"><span>Telefon (opcjonalnie)</span><input type="tel" data-customer-phone maxlength="20" placeholder="+48 500 000 000"></label>
+        <div class="panel-product-form__actions">
+          <button type="button" class="panel-ghost-btn" data-close-customer-modal>Anuluj</button>
+          <button type="submit" class="panel-primary-btn"><i class="fas fa-check" aria-hidden="true"></i> Zapisz klienta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel-modal panel-modal--banner-lib" id="banner-library-modal" role="dialog" aria-modal="true" aria-labelledby="banner-library-title" aria-hidden="true" hidden>
+    <div class="panel-modal__backdrop" data-close-banner-library tabindex="-1"></div>
+    <div class="panel-modal__dialog panel-modal__dialog--wide">
+      <header class="panel-modal__head">
+        <div>
+          <span class="panel-modal__eyebrow"><i class="fas fa-images" aria-hidden="true"></i> AmiQPlace Media</span>
+          <h2 id="banner-library-title">Biblioteka AmiQPlace</h2>
+          <p class="panel-banner-lib__subtitle">Profesjonalne tła hero dopasowane do szablonu — wyszukaj, filtruj i zastosuj jednym kliknięciem.</p>
+        </div>
+        <button type="button" class="panel-modal__close" data-close-banner-library aria-label="Zamknij bibliotekę">
+          <span class="panel-modal__close-icon" aria-hidden="true"></span>
+        </button>
+      </header>
+      <div class="panel-modal__body panel-banner-lib">
+        <div class="panel-banner-lib__toolbar">
+          <label class="panel-banner-lib__search">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" data-banner-lib-search placeholder="Szukaj banerów — np. moda, tech, marmur…" autocomplete="off">
+          </label>
+          <div class="panel-banner-lib__cats" data-banner-lib-categories role="tablist" aria-label="Kategorie banerów"></div>
+        </div>
+        <p class="panel-banner-lib__meta" data-banner-lib-meta></p>
+        <div class="panel-banner-lib__grid" data-banner-lib-grid></div>
+        <div class="panel-banner-lib__empty" data-banner-lib-empty hidden>
+          <i class="fas fa-image" aria-hidden="true"></i>
+          <strong>Brak wyników</strong>
+          <span>Spróbuj innej frazy lub wybierz kategorię „Wszystkie”.</span>
+        </div>
+      </div>
+      <footer class="panel-modal__foot panel-banner-lib__foot">
+        <label class="panel-upload-dropzone panel-upload-dropzone--mini panel-banner-lib__upload" data-banner-lib-upload-zone>
+          <input type="file" accept="image/jpeg,image/png,image/webp" data-banner-lib-file hidden>
+          <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+          <strong>Prześlij własne zdjęcie</strong>
+          <span>JPG · PNG · WebP · max. 2 MB</span>
+        </label>
+        <span class="panel-banner-lib__foot-note" data-banner-lib-foot-note></span>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    window.AmiqDropshipAiConfig = { apiBase: "http://localhost:3847" };
+  </script>
+  <script src="plugins/dropship-ai/frontend/dropship-ai-features.js" defer></script>
+  <script src="plugins/dropship-ai/frontend/dropship-ai.js" defer></script>
+  <script src="storefront.js" defer></script>
+  <script src="auth.js" defer></script>
+  <script src="account.js" defer></script>
+  <script src="panel.js" defer></script>
+</body>
+</html>
