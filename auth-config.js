@@ -4,6 +4,6 @@
  */
 window.AmiQAuthConfig = {
   supabaseUrl: "https://cgqutdfznvxijpxputfn.supabase.co/rest/v1/",
-  supabaseAnonKey: "sb_secret_fZBQV0M-OxljfFA8-P_D0Q_W9ERmhsx",
+  supabaseAnonKey: "sb_publishable_voM6YPeBaSb5ZL4yEN2oJQ_zrau7o8L",
   enabled: true
 };
